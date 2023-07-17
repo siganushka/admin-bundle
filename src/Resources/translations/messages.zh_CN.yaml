@@ -1,0 +1,4 @@
+admin_user.role: 角色
+admin_user.identifier: 帐号
+admin_user.password: 登录密码
+admin_user.password_confirmation: 确认密码
