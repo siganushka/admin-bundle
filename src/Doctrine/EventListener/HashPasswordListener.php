@@ -6,7 +6,6 @@ namespace Siganushka\AdminBundle\Doctrine\EventListener;
 
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Siganushka\AdminBundle\Entity\User;
-use Symfony\Component\Form\Util\FormUtil;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class HashPasswordListener
@@ -37,7 +36,7 @@ class HashPasswordListener
     private function hashPassword(User $user): void
     {
         $plainPassword = $user->getPlainPassword();
-        if (FormUtil::isEmpty($plainPassword)) {
+        if (null === $plainPassword || '' === $plainPassword) {
             return;
         }
 
