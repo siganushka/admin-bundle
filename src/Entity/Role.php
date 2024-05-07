@@ -12,7 +12,6 @@ use Siganushka\Contracts\Doctrine\ResourceInterface;
 use Siganushka\Contracts\Doctrine\ResourceTrait;
 use Siganushka\Contracts\Doctrine\TimestampableInterface;
 use Siganushka\Contracts\Doctrine\TimestampableTrait;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RoleRepository::class)
@@ -27,20 +26,18 @@ class Role implements ResourceInterface, TimestampableInterface
 
     /**
      * @ORM\Column(type="string", length=16, unique=true, options={"fixed": true})
-     *
-     * @Groups({"admin_role"})
      */
     private ?string $name = null;
 
     /**
      * @ORM\Column(type="json")
-     *
-     * @Groups({"admin_role"})
      */
     private array $permissions = [];
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="role", orphanRemoval=true)
+     *
+     * @var Collection<int, User>
      */
     private Collection $users;
 

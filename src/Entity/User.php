@@ -13,7 +13,6 @@ use Siganushka\Contracts\Doctrine\ResourceTrait;
 use Siganushka\Contracts\Doctrine\TimestampableInterface;
 use Siganushka\Contracts\Doctrine\TimestampableTrait;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -30,15 +29,11 @@ class User implements ResourceInterface, EnableInterface, TimestampableInterface
     /**
      * @ORM\ManyToOne(targetEntity=Role::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
-     *
-     * @Groups({"admin_user_role"})
      */
     private ?Role $role = null;
 
     /**
      * @ORM\Column(type="string", length=16, unique=true, options={"fixed": true})
-     *
-     * @Groups({"admin_user"})
      */
     private ?string $identifier = null;
 

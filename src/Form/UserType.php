@@ -64,7 +64,7 @@ class UserType extends AbstractType
             'validation_groups' => function (FormInterface $form) {
                 $data = $form->getData();
 
-                return $data instanceof ResourceInterface && $data->getId()
+                return $data instanceof ResourceInterface && null !== $data->getId()
                     ? ['Default']
                     : ['Default', 'NotBlank'];
             },
