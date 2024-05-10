@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Siganushka\AdminBundle\Form\RoleType;
 use Siganushka\AdminBundle\Repository\RoleRepository;
+use Siganushka\GenericBundle\Exception\FormErrorException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,7 +53,7 @@ class RoleController extends AbstractController
         $form->submit($request->request->all());
 
         if (!$form->isValid()) {
-            return $this->createResponse($form);
+            throw new FormErrorException($form);
         }
 
         $entityManager->persist($entity);
@@ -88,7 +89,7 @@ class RoleController extends AbstractController
         $form->submit($request->request->all(), !$request->isMethod('PATCH'));
 
         if (!$form->isValid()) {
-            return $this->createResponse($form);
+            throw new FormErrorException($form);
         }
 
         $entityManager->flush();
