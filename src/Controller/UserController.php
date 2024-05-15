@@ -13,16 +13,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class UserController extends AbstractController
 {
-    protected SerializerInterface $serializer;
     protected UserRepository $userRepository;
 
-    public function __construct(SerializerInterface $serializer, UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->serializer = $serializer;
         $this->userRepository = $userRepository;
     }
 
