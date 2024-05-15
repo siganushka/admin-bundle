@@ -42,7 +42,7 @@ class User implements ResourceInterface, EnableInterface, TimestampableInterface
      */
     private ?string $password = null;
 
-    private ?string $plainPassword = null;
+    private ?string $rawPassword = null;
 
     public function getRole(): ?Role
     {
@@ -80,14 +80,14 @@ class User implements ResourceInterface, EnableInterface, TimestampableInterface
         return $this;
     }
 
-    public function getPlainPassword(): ?string
+    public function getRawPassword(): ?string
     {
-        return $this->plainPassword;
+        return $this->rawPassword;
     }
 
-    public function setPlainPassword(?string $plainPassword): self
+    public function setRawPassword(?string $rawPassword): self
     {
-        $this->plainPassword = $plainPassword;
+        $this->rawPassword = $rawPassword;
 
         return $this;
     }

@@ -10,7 +10,6 @@ use Siganushka\AdminBundle\Form\RoleType;
 use Siganushka\AdminBundle\Repository\RoleRepository;
 use Siganushka\GenericBundle\Exception\FormErrorException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -120,8 +119,7 @@ class RoleController extends AbstractController
     protected function createResponse($data = null, int $statusCode = Response::HTTP_OK, array $headers = []): Response
     {
         $attributes = ['id', 'name', 'permissions', 'updatedAt', 'createdAt'];
-        $json = $this->serializer->serialize($data, 'json', compact('attributes'));
 
-        return JsonResponse::fromJsonString($json, $statusCode, $headers);
+        return $this->json($data, $statusCode, $headers, compact('attributes'));
     }
 }

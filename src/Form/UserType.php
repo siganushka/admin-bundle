@@ -34,7 +34,7 @@ class UserType extends AbstractType
                 'label' => 'admin_user.identifier',
                 'constraints' => new NotBlank(),
             ])
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('rawPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'This password is not match.',
                 'first_options' => [

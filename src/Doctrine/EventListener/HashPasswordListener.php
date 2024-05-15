@@ -35,13 +35,13 @@ class HashPasswordListener
 
     private function hashPassword(User $user): void
     {
-        $plainPassword = $user->getPlainPassword();
-        if (null === $plainPassword || '' === $plainPassword) {
+        $rawPassword = $user->getRawPassword();
+        if (null === $rawPassword || '' === $rawPassword) {
             return;
         }
 
-        $password = $this->passwordHasher->hashPassword($user, $plainPassword);
+        $password = $this->passwordHasher->hashPassword($user, $rawPassword);
         $user->setPassword($password);
-        $user->setPlainPassword(null);
+        $user->setRawPassword(null);
     }
 }

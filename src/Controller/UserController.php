@@ -10,7 +10,6 @@ use Siganushka\AdminBundle\Form\UserType;
 use Siganushka\AdminBundle\Repository\UserRepository;
 use Siganushka\GenericBundle\Exception\FormErrorException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,6 +47,7 @@ class UserController extends AbstractController
     public function postCollection(Request $request, EntityManagerInterface $entityManager): Response
     {
         $entity = $this->userRepository->createNew();
+        $entity->setEnabled(true);
 
         $form = $this->createForm(UserType::class, $entity);
         $form->submit($request->request->all());
@@ -120,8 +120,7 @@ class UserController extends AbstractController
     protected function createResponse($data = null, int $statusCode = Response::HTTP_OK, array $headers = []): Response
     {
         $attributes = ['id', 'identifier', 'enabled', 'updatedAt', 'createdAt'];
-        $json = $this->serializer->serialize($data, 'json', compact('attributes'));
 
-        return JsonResponse::fromJsonString($json, $statusCode, $headers);
+        return $this->json($data, $statusCode, $headers, compact('attributes'));
     }
 }
