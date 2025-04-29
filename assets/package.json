@@ -1,0 +1,26 @@
+{
+    "name": "@siganushka/admin-bundle",
+    "description": "Admin bundle integration for Symfony",
+    "license": "MIT",
+    "version": "0.1.0",
+    "symfony": {
+        "controllers": {
+            "admin": {
+                "main": "dist/controller.js",
+                "name": "siganushka-admin",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "@siganushka/admin-bundle/dist/bootstrap5.css": true
+                }
+            }
+        },
+        "importmap": {
+            "@hotwired/stimulus": "^3.0.0"
+        }
+    },
+    "peerDependencies": {
+        "@hotwired/stimulus": "^3.0.0"
+    }
+}

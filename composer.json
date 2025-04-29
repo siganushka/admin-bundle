@@ -1,7 +1,7 @@
 {
     "name": "siganushka/admin-bundle",
     "description": "Admin Bundle.",
-    "keywords": ["admin-bundle"],
+    "keywords": ["admin-bundle", "symfony-ux"],
     "homepage": "https://github.com/siganushka/admin-bundle",
     "type": "symfony-bundle",
     "license": "MIT",
@@ -14,6 +14,7 @@
     "require": {
         "php": ">=8.1",
         "knplabs/knp-components": "^4.4|^5.0",
+        "knplabs/knp-menu-bundle": "^3.4",
         "siganushka/doctrine-contracts": "dev-main",
         "siganushka/generic-bundle": "dev-main",
         "symfony/framework-bundle": "^6.4|^7.0"

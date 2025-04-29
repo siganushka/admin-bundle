@@ -1,0 +1,88 @@
+:root {
+  --bs-font-sans-serif:
+    /* system-ui, */
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    "Noto Sans",
+    "Liberation Sans",
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+
+/** Sidebar */
+aside .offcanvas-md {
+  width: 240px !important;
+  transition: width .15s ease-in-out
+}
+
+aside .offcanvas-md .menu-item {
+  color: var(--bs-body-color);
+  white-space: nowrap !important;
+}
+
+aside .offcanvas-md .menu-item[role=button]::after {
+  font-size: .875rem;
+  font-family: bootstrap-icons;
+  margin-left: auto;
+  margin-right: .75rem;
+  content: "\F285";
+  transition: transform .15s ease;
+}
+
+aside .offcanvas-md .menu-item[role=button][aria-expanded=true]::after {
+  transform: rotate(90deg);
+}
+
+aside .offcanvas-md .menu-item:hover,
+aside .offcanvas-md .menu-item:focus,
+aside .offcanvas-md .current > .menu-item {
+  background-color: var(--bs-secondary-bg);
+}
+
+/** Sidebar pinned button */
+aside .btn-pinned {
+  --bs-btn-bg: var(--bs-dark-bg-subtle);
+  --bs-btn-hover-bg: var(--bs-dark-border-subtle);
+  --bs-btn-active-bg: var(--bs-dark-border-subtle);
+  transition: opacity .15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+aside:hover .btn-pinned {
+  opacity: 1 !important;
+}
+
+/** Sidebar pinned */
+aside.pinned:not(:hover) .offcanvas-md {
+  width: 56px !important;
+}
+
+aside.pinned .btn-pinned {
+  transform: translate(-50%, -50%) rotate(-45deg) !important;
+}
+
+aside.pinned:not(:hover) .offcanvas-md .menu-item span,
+aside.pinned:not(:hover) .offcanvas-md .menu-item + div,
+aside.pinned:not(:hover) .offcanvas-md .menu-item[role=button]::after {
+  display: none;
+}
+
+/** Sidebar scrollbar */
+aside .offcanvas-md::-webkit-scrollbar {
+  width: 4px;
+}
+
+aside .offcanvas-md::-webkit-scrollbar-track,
+aside .offcanvas-md::-webkit-scrollbar-thumb {
+  border-radius: var(--bs-border-radius-pill);
+  background-color: var(--bs-dark-bg-subtle);
+}
+
+aside:hover .offcanvas-md::-webkit-scrollbar-thumb {
+  background-color: var(--bs-dark-border-subtle);
+}
