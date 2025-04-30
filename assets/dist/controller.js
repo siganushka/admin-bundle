@@ -1,5 +1,4 @@
 import { Controller } from '@hotwired/stimulus';
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {

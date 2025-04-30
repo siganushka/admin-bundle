@@ -23,11 +23,17 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
         // $config = $this->processConfiguration($configuration, $configs);
 
         $builder = $container->findDefinition(Builder::class);
+        $builder->addTag('knp_menu.menu_builder', ['method' => 'navbar', 'alias' => 'navbar']);
         $builder->addTag('knp_menu.menu_builder', ['method' => 'sidebar', 'alias' => 'sidebar']);
+        $builder->addTag('knp_menu.menu_builder', ['method' => 'user', 'alias' => 'user']);
     }
 
     public function prepend(ContainerBuilder $container): void
     {
+        $container->prependExtensionConfig('knp_menu', [
+            'twig' => ['template' => '@SiganushkaAdmin/_menu.html.twig'],
+        ]);
+
         if (SiganushkaGenericExtension::isAssetMapperAvailable($container)) {
             $container->prependExtensionConfig('framework', [
                 'asset_mapper' => [

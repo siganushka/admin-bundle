@@ -21,54 +21,71 @@ aside .offcanvas-md {
   transition: width .15s ease-in-out
 }
 
-aside .offcanvas-md .menu-item {
-  color: var(--bs-body-color);
-  white-space: nowrap !important;
+aside .offcanvas-md ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-aside .offcanvas-md .menu-item[role=button]::after {
+aside .offcanvas-md ul:first-child {
+  padding-bottom: 2.5rem;
+}
+
+aside .offcanvas-md ul a {
+  color: var(--bs-body-color);
+  border-radius: var(--bs-border-radius);
+  display: flex;
+  align-items: center;
+  padding: .5rem .75rem;
+  text-decoration: none;
+  white-space: nowrap !important;
+  gap: .5rem;
+}
+
+/** level => 2/3 */
+aside .offcanvas-md ul a + ul a { padding-left: 2.25rem; }
+aside .offcanvas-md ul a + ul a + ul a { padding-left: 3.75rem; }
+
+aside .offcanvas-md ul a[data-bs-toggle]::after {
   font-size: .875rem;
   font-family: bootstrap-icons;
   margin-left: auto;
-  margin-right: .75rem;
   content: "\F285";
   transition: transform .15s ease;
 }
 
-aside .offcanvas-md .menu-item[role=button][aria-expanded=true]::after {
+aside .offcanvas-md ul a[data-bs-toggle][aria-expanded=true]::after {
   transform: rotate(90deg);
 }
 
-aside .offcanvas-md .menu-item:hover,
-aside .offcanvas-md .menu-item:focus,
-aside .offcanvas-md .current > .menu-item {
+aside .offcanvas-md ul a:hover,
+aside .offcanvas-md ul a:focus,
+aside .offcanvas-md ul .current a {
   background-color: var(--bs-secondary-bg);
 }
 
 /** Sidebar pinned button */
 aside .btn-pinned {
-  --bs-btn-bg: var(--bs-dark-bg-subtle);
-  --bs-btn-hover-bg: var(--bs-dark-border-subtle);
-  --bs-btn-active-bg: var(--bs-dark-border-subtle);
-  transition: opacity .15s ease-in-out, transform 0.15s ease-in-out;
+  --bs-btn-hover-bg: var(--bs-secondary-bg);
+  --bs-btn-active-bg: var(--bs-secondary-bg);
 }
 
-aside:hover .btn-pinned {
-  opacity: 1 !important;
+aside .btn-pinned .bi::before {
+  transition: transform 0.15s ease-in-out;
 }
 
 /** Sidebar pinned */
+aside.pinned .btn-pinned .bi::before {
+  transform: rotate(-45deg) !important;
+}
+
 aside.pinned:not(:hover) .offcanvas-md {
   width: 56px !important;
 }
 
-aside.pinned .btn-pinned {
-  transform: translate(-50%, -50%) rotate(-45deg) !important;
-}
-
-aside.pinned:not(:hover) .offcanvas-md .menu-item span,
-aside.pinned:not(:hover) .offcanvas-md .menu-item + div,
-aside.pinned:not(:hover) .offcanvas-md .menu-item[role=button]::after {
+aside.pinned:not(:hover) .offcanvas-md ul a > span,
+aside.pinned:not(:hover) .offcanvas-md ul a + ul,
+aside.pinned:not(:hover) .offcanvas-md ul a[data-bs-toggle]::after {
   display: none;
 }
 

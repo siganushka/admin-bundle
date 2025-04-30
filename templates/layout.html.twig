@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+      {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+  </head>
+  <body class="d-flex vh-100">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand d-none d-md-block">
+          <i class="bi bi-bootstrap-fill"></i> Dashboard
+        </a>
+        <button class="navbar-toggler d-md-none px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="aside .offcanvas-md" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle Sidebar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        {{ knp_menu_render('navbar') }}
+        {{ knp_menu_render('user') }}
+      </div>
+    </nav>
+
+    <div class="d-flex flex-grow-1 overflow-hidden" style="padding-top: 3.5rem">
+      <aside class="bg-dark-subtle position-relative shadow" {{ stimulus_controller('siganushka-admin') }}>
+        <div class="offcanvas-md offcanvas-start h-100 overflow-hidden overflow-y-auto" tabindex="-1" aria-labelledby="sidebarMenuLabel">
+          <div class="offcanvas-body d-md-flex flex-column p-2">
+            {{ knp_menu_render('sidebar') }}
+          </div>
+        </div>
+
+        <button class="btn btn-pinned border-0 position-absolute bottom-0 end-0 text-dark-emphasis m-2 py-2" {{ stimulus_action('siganushka-admin', 'pinned') }}>
+          <i class="bi bi-pin-angle"></i>
+        </button>
+      </aside>
+
+      <main class="flex-grow-1 overflow-auto p-3">
+        {% block body %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>
