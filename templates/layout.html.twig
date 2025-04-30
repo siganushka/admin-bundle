@@ -15,14 +15,23 @@
   <body class="d-flex vh-100">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow">
       <div class="container-fluid">
-        <a href="#" class="navbar-brand d-none d-md-block">
-          <i class="bi bi-bootstrap-fill"></i> Dashboard
-        </a>
+        {% block logo %}
+          <a href="#" class="navbar-brand d-none d-md-block">
+            <i class="bi bi-bootstrap-fill"></i> Dashboard
+          </a>
+        {% endblock %}
+
         <button class="navbar-toggler d-md-none px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="aside .offcanvas-md" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle Sidebar">
           <span class="navbar-toggler-icon"></span>
         </button>
-        {{ knp_menu_render('navbar') }}
-        {{ knp_menu_render('user') }}
+
+        {% block navbar %}
+          {{ knp_menu_render('navbar') }}
+        {% endblock %}
+
+        {% block user %}
+          {{ knp_menu_render('user') }}
+        {% endblock %}
       </div>
     </nav>
 
@@ -30,13 +39,17 @@
       <aside class="bg-dark-subtle position-relative shadow" {{ stimulus_controller('siganushka-admin') }}>
         <div class="offcanvas-md offcanvas-start h-100 overflow-hidden overflow-y-auto" tabindex="-1" aria-labelledby="sidebarMenuLabel">
           <div class="offcanvas-body d-md-flex flex-column p-2">
-            {{ knp_menu_render('sidebar') }}
+            {% block sidebar %}
+              {{ knp_menu_render('sidebar') }}
+            {% endblock %}
           </div>
         </div>
 
-        <button class="btn btn-pinned border-0 position-absolute bottom-0 end-0 text-dark-emphasis m-2 py-2" {{ stimulus_action('siganushka-admin', 'pinned') }}>
-          <i class="bi bi-pin-angle"></i>
-        </button>
+        {% block pinned %}
+          <button class="btn btn-pinned border-0 position-absolute bottom-0 end-0 text-dark-emphasis m-2 py-2" {{ stimulus_action('siganushka-admin', 'pinned') }}>
+            <i class="bi bi-pin-angle"></i>
+          </button>
+        {% endblock %}
       </aside>
 
       <main class="flex-grow-1 overflow-auto p-3">

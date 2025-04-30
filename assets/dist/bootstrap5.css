@@ -60,7 +60,7 @@ aside .offcanvas-md ul a[data-bs-toggle][aria-expanded=true]::after {
 
 aside .offcanvas-md ul a:hover,
 aside .offcanvas-md ul a:focus,
-aside .offcanvas-md ul .current a {
+aside .offcanvas-md ul .current > a {
   background-color: var(--bs-secondary-bg);
 }
 

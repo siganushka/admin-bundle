@@ -28,7 +28,7 @@ final class SidebarMenuListener
             'show' => $this->matcher->isAncestor($item),
         ], fn (bool $has) => $has);
 
-        // Using span replace link.
+        // Using span replace a tag.
         if (\array_key_exists('collapse', $classes)) {
             $item->setUri(null);
         }
@@ -39,7 +39,7 @@ final class SidebarMenuListener
         $item->setLabelAttribute('role', 'button');
         $item->setLabelAttribute('data-bs-target', \sprintf('#collapse-%s', $identifier));
         $item->setLabelAttribute('data-bs-toggle', 'collapse');
-        $item->setLabelAttribute('aria-expanded', \array_key_exists('show', $classes));
+        $item->setLabelAttribute('aria-expanded', \array_key_exists('show', $classes) ? 'true' : 'false');
 
         $item->setChildrenAttribute('id', \sprintf('collapse-%s', $identifier));
         $item->setChildrenAttribute('class', implode(' ', array_keys($classes)));
