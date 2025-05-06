@@ -28,21 +28,21 @@ final class SidebarMenuListener
             'show' => $this->matcher->isAncestor($item),
         ], fn (bool $has) => $has);
 
-        // Using span replace a tag.
-        if (\array_key_exists('collapse', $classes)) {
-            $item->setUri(null);
-        }
-
         // Generate item identifier for id attribute.
         $identifier = spl_object_id($item);
 
-        $item->setLabelAttribute('role', 'button');
-        $item->setLabelAttribute('data-bs-target', \sprintf('#collapse-%s', $identifier));
-        $item->setLabelAttribute('data-bs-toggle', 'collapse');
-        $item->setLabelAttribute('aria-expanded', \array_key_exists('show', $classes) ? 'true' : 'false');
-
         $item->setChildrenAttribute('id', \sprintf('collapse-%s', $identifier));
         $item->setChildrenAttribute('class', implode(' ', array_keys($classes)));
+
+        if (\array_key_exists('collapse', $classes)) {
+            $item
+                ->setUri(null)
+                ->setLabelAttribute('role', 'button')
+                ->setLabelAttribute('data-bs-target', \sprintf('#collapse-%s', $identifier))
+                ->setLabelAttribute('data-bs-toggle', 'collapse')
+                ->setLabelAttribute('aria-expanded', \array_key_exists('show', $classes) ? 'true' : 'false')
+            ;
+        }
 
         if ($item->getParent()) {
             $item->setChildrenAttribute('data-bs-parent', \sprintf('#collapse-%s', spl_object_id($item->getParent())));
