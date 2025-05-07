@@ -19,8 +19,10 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../../config'));
         $loader->load('services.php');
 
-        // $configuration = new Configuration();
-        // $config = $this->processConfiguration($configuration, $configs);
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('siganushka_admin.collapsed_cookie', $config['collapsed_cookie']);
 
         $builder = $container->findDefinition(Builder::class);
         $builder->addTag('knp_menu.menu_builder', ['method' => 'sidebar', 'alias' => 'sidebar']);
@@ -29,7 +31,9 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
     public function prepend(ContainerBuilder $container): void
     {
         $container->prependExtensionConfig('knp_menu', [
-            'twig' => ['template' => '@SiganushkaAdmin/_menu.html.twig'],
+            'twig' => [
+                'template' => '@SiganushkaAdmin/_menu.html.twig',
+            ],
         ]);
 
         if (SiganushkaGenericExtension::isAssetMapperAvailable($container)) {

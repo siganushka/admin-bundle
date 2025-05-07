@@ -36,6 +36,7 @@ aside .offcanvas-md ul a {
   border-radius: var(--bs-border-radius);
   display: flex;
   align-items: center;
+  margin-bottom: .25rem;
   padding: .5rem .75rem;
   text-decoration: none;
   white-space: nowrap !important;
@@ -64,28 +65,28 @@ aside .offcanvas-md ul .current > a {
   background-color: var(--bs-secondary-bg);
 }
 
-/** Sidebar pinned button */
-aside .btn-pinned {
+/** Sidebar collapsed button */
+aside > button {
   --bs-btn-hover-bg: var(--bs-secondary-bg);
   --bs-btn-active-bg: var(--bs-secondary-bg);
 }
 
-aside .btn-pinned .bi::before {
+aside > button .bi::before {
   transition: transform 0.15s ease-in-out;
 }
 
-/** Sidebar pinned */
-aside.pinned .btn-pinned .bi::before {
-  transform: rotate(-45deg) !important;
+/** Sidebar collapsed */
+aside.collapsed > button .bi::before {
+  transform: rotate(180deg) !important;
 }
 
-aside.pinned:not(:hover) .offcanvas-md {
+aside.collapsed:not(:hover) .offcanvas-md {
   width: 56px !important;
 }
 
-aside.pinned:not(:hover) .offcanvas-md ul a > span,
-aside.pinned:not(:hover) .offcanvas-md ul a + ul,
-aside.pinned:not(:hover) .offcanvas-md ul a[data-bs-toggle]::after {
+aside.collapsed:not(:hover) .offcanvas-md ul a > span,
+aside.collapsed:not(:hover) .offcanvas-md ul a + ul,
+aside.collapsed:not(:hover) .offcanvas-md ul a[data-bs-toggle]::after {
   display: none;
 }
 
