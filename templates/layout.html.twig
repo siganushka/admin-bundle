@@ -27,11 +27,7 @@
           </button>
 
           {% block navbar %}
-            {% if is_granted('IS_AUTHENTICATED_FULLY ') %}
-              <span class="navbar-text ms-auto">
-                {{ app.user.userIdentifier }}
-              </span>
-            {% endif %}
+            {{ knp_menu_render('navbar') }}
           {% endblock %}
         </div>
       </nav>

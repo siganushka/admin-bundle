@@ -6,11 +6,19 @@
 {% endblock %}
 
 {% block label %}
+  {% set img = item.getExtra('img') %}
   {% set icon = item.getExtra('icon') %}
+  {% set hide_label = item.getExtra('hide_label')|default(false) %}
+
+  {% if img %}
+    <img src="{{ img }}" width="24" height="24" class="rounded-circle me-2">
+  {% endif %}
 
   {% if icon %}
     <i class="bi bi-{{ icon }}"></i>
   {% endif %}
 
-  <span class="text-truncate">{{ parent() }}</span>
+  {% if hide_label is same as(false) %}
+    <span class="text-truncate">{{ parent() }}</span>
+  {% endif %}
 {% endblock %}
