@@ -8,10 +8,10 @@ use Knp\Menu\ItemInterface;
 use Siganushka\AdminBundle\Event\NavbarMenuEvent;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
+#[AsEventListener(priority: -128)]
 final class NavbarMenuListener
 {
-    #[AsEventListener(priority: -128)]
-    public function onNavbarMenu(NavbarMenuEvent $event): void
+    public function __invoke(NavbarMenuEvent $event): void
     {
         $item = $event->getItem();
         $item->setChildrenAttribute('class', 'navbar-nav flex-row flex-wrap ms-auto');
@@ -26,7 +26,7 @@ final class NavbarMenuListener
     private function renderNavitem(ItemInterface $item): void
     {
         $item->setAttribute('class', 'nav-item');
-        $item->setLinkAttribute('class', 'nav-link d-flex align-items-center gap-2');
+        $item->setLinkAttribute('class', 'nav-link d-flex align-items-center gap-2 px-2');
     }
 
     private function renderDropdown(ItemInterface $item): void

@@ -9,14 +9,14 @@ use Knp\Menu\Matcher\MatcherInterface;
 use Siganushka\AdminBundle\Event\SidebarMenuEvent;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
+#[AsEventListener(priority: -128)]
 final class SidebarMenuListener
 {
     public function __construct(private readonly MatcherInterface $matcher)
     {
     }
 
-    #[AsEventListener(priority: -128)]
-    public function onSidebarMenuEvent(SidebarMenuEvent $event): void
+    public function __invoke(SidebarMenuEvent $event): void
     {
         $this->addClassesToItem($event->getItem());
     }
