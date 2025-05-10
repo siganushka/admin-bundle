@@ -17,13 +17,13 @@ final class NavbarMenuListener
         $item->setChildrenAttribute('class', 'navbar-nav flex-row flex-wrap ms-auto');
 
         foreach ($item as $child) {
-            $child->hasChildren() ? $this->renderDropdown($child) : $this->renderNav($child);
+            $child->hasChildren()
+                ? $this->renderDropdown($child)
+                : $this->renderNavitem($child);
         }
-
-        // $this->addClassesToItem($event->getItem());
     }
 
-    private function renderNav(ItemInterface $item): void
+    private function renderNavitem(ItemInterface $item): void
     {
         $item->setAttribute('class', 'nav-item');
         $item->setLinkAttribute('class', 'nav-link d-flex align-items-center gap-2');
@@ -33,35 +33,13 @@ final class NavbarMenuListener
     {
         $item
             ->setUri(null)
-            ->setLabel(null)
             ->setAttribute('class', 'nav-item dropdown')
-            ->setLabelAttribute('role', 'button')
-            ->setLabelAttribute('data-bs-toggle', 'dropdown')
-            ->setLabelAttribute('class', 'nav-link d-flex align-items-center dropdown-toggle')
+            ->setLinkAttribute('role', 'button')
+            ->setLinkAttribute('data-bs-toggle', 'dropdown')
+            ->setLinkAttribute('class', 'nav-link d-flex align-items-center dropdown-toggle')
             ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end position-absolute shadow')
         ;
 
         array_map(fn (ItemInterface $child) => $child->setLinkAttribute('class', 'dropdown-item d-flex align-items-center gap-2'), iterator_to_array($item));
     }
-
-    // private function addClassesToItem(ItemInterface $item): ItemInterface
-    // {
-    //     $item->setChildrenAttribute('class', $item->isRoot()
-    //         ? 'navbar-nav flex-row flex-wrap ms-auto'
-    //         : 'dropdown-menu dropdown-menu-end position-absolute shadow');
-
-    //     if ($item->hasChildren()) {
-    //         $item
-    //             ->setUri(null)
-    //             ->setLabelAttribute('class', 'nav-link dropdown-toggle d-flex align-items-center')
-    //             ->setLabelAttribute('role', 'button')
-    //             ->setLabelAttribute('data-bs-toggle', 'dropdown')
-    //             ->setLinkAttribute('class', 'dropdown-item d-flex align-items-center gap-2')
-    //         ;
-    //     }
-
-    //     array_map(fn (ItemInterface $child) => $this->addClassesToItem($child), iterator_to_array($item));
-
-    //     return $item;
-    // }
 }
