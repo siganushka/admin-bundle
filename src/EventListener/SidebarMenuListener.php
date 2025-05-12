@@ -18,10 +18,10 @@ final class SidebarMenuListener
 
     public function __invoke(SidebarMenuEvent $event): void
     {
-        $this->addClassesToItem($event->getItem());
+        $this->addClassToItem($event->getItem());
     }
 
-    private function addClassesToItem(ItemInterface $item): ItemInterface
+    private function addClassToItem(ItemInterface $item): ItemInterface
     {
         $classes = array_filter([
             'collapse' => $item->hasChildren(),
@@ -48,7 +48,7 @@ final class SidebarMenuListener
             $item->setChildrenAttribute('data-bs-parent', \sprintf('#collapse-%s', spl_object_id($item->getParent())));
         }
 
-        array_map(fn (ItemInterface $child) => $this->addClassesToItem($child), iterator_to_array($item));
+        array_map(fn (ItemInterface $child) => $this->addClassToItem($child), iterator_to_array($item));
 
         return $item;
     }

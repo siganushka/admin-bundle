@@ -40,7 +40,6 @@ aside .offcanvas-md ul a {
   padding: .5rem .75rem;
   text-decoration: none;
   white-space: nowrap !important;
-  gap: .5rem;
 }
 
 /** level => 2/3 */

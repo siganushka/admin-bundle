@@ -26,20 +26,24 @@ final class NavbarMenuListener
     private function renderNavitem(ItemInterface $item): void
     {
         $item->setAttribute('class', 'nav-item');
-        $item->setLinkAttribute('class', 'nav-link d-flex align-items-center gap-2 px-2');
+        $item->setLinkAttribute('class', 'nav-link d-flex align-items-center px-2');
     }
 
     private function renderDropdown(ItemInterface $item): void
     {
+        $linkClass = $item->getExtra('show_label', true)
+            ? 'nav-link d-flex align-items-center px-2 dropdown-toggle'
+            : 'nav-link d-flex align-items-center px-2';
+
         $item
             ->setUri(null)
             ->setAttribute('class', 'nav-item dropdown')
             ->setLinkAttribute('role', 'button')
             ->setLinkAttribute('data-bs-toggle', 'dropdown')
-            ->setLinkAttribute('class', 'nav-link d-flex align-items-center dropdown-toggle')
+            ->setLinkAttribute('class', $linkClass)
             ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end position-absolute shadow')
         ;
 
-        array_map(fn (ItemInterface $child) => $child->setLinkAttribute('class', 'dropdown-item d-flex align-items-center gap-2'), iterator_to_array($item));
+        array_map(fn (ItemInterface $child) => $child->setLinkAttribute('class', 'dropdown-item d-flex align-items-center'), iterator_to_array($item));
     }
 }
