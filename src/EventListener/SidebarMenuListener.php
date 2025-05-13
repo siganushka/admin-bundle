@@ -31,19 +31,19 @@ final class SidebarMenuListener
         // Generate item identifier for id attribute.
         $identifier = spl_object_id($item);
 
-        $item->setChildrenAttribute('id', \sprintf('collapse-%s', $identifier));
+        $item->setChildrenAttribute('id', \sprintf('sidebar-%s', $identifier));
         $item->setChildrenAttribute('class', implode(' ', array_keys($classes)));
 
         if (\array_key_exists('collapse', $classes)) {
             $item
-                ->setLinkAttribute('href', \sprintf('#collapse-%s', $identifier))
+                ->setLinkAttribute('href', \sprintf('#sidebar-%s', $identifier))
                 ->setLinkAttribute('data-bs-toggle', 'collapse')
                 ->setLinkAttribute('aria-expanded', \array_key_exists('show', $classes) ? 'true' : 'false')
             ;
         }
 
         if ($item->getParent()) {
-            $item->setChildrenAttribute('data-bs-parent', \sprintf('#collapse-%s', spl_object_id($item->getParent())));
+            $item->setChildrenAttribute('data-bs-parent', \sprintf('#sidebar-%s', spl_object_id($item->getParent())));
         }
 
         array_map(fn (ItemInterface $child) => $this->addClassToItem($child), iterator_to_array($item));

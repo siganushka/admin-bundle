@@ -40,11 +40,11 @@ final class NavbarMenuListener
 
         $item
             ->setAttribute('class', 'nav-item dropdown')
-            ->setLinkAttribute('href', \sprintf('#dropdown-%s', $identifier))
+            ->setLinkAttribute('href', \sprintf('#navbar-%s', $identifier))
             ->setLinkAttribute('class', $linkClass)
             ->setLinkAttribute('data-bs-toggle', 'dropdown')
             ->setLinkAttribute('aria-expanded', 'false')
-            ->setChildrenAttribute('id', \sprintf('dropdown-%s', $identifier))
+            ->setChildrenAttribute('id', \sprintf('navbar-%s', $identifier))
             ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end position-absolute shadow')
         ;
 
