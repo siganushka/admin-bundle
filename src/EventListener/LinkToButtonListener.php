@@ -25,8 +25,10 @@ final class LinkToButtonListener
         }
 
         if (null === $item->getUri()) {
-            $item->setLinkAttribute('role', 'button');
-            $item->setLinkAttribute('tabindex', '0');
+            $item
+                ->setLinkAttribute('role', 'button')
+                ->setLinkAttribute('tabindex', '0')
+            ;
         }
 
         array_map(fn (ItemInterface $child) => $this->linkToButton($child), iterator_to_array($item));

@@ -8,7 +8,6 @@
 {% block label %}
   {% set img = item.getExtra('img') %}
   {% set icon = item.getExtra('icon') %}
-  {% set show_label = item.getExtra('show_label', true) %}
 
   {% if img %}
     <img src="{{ img }}" width="24" height="24" class="rounded-circle me-2">
@@ -18,7 +17,7 @@
     <i class="bi bi-{{ icon }} me-2"></i>
   {% endif %}
 
-  {% if show_label is same as(true) %}
+  {% if item.getExtra('show_label', true) is same as(true) %}
     <span class="text-truncate">{{ parent() }}</span>
   {% endif %}
 {% endblock %}

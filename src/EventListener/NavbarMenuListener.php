@@ -35,10 +35,16 @@ final class NavbarMenuListener
             ? 'nav-link d-flex align-items-center px-2 dropdown-toggle'
             : 'nav-link d-flex align-items-center px-2';
 
+        // Generate item identifier for id attribute.
+        $identifier = spl_object_id($item);
+
         $item
             ->setAttribute('class', 'nav-item dropdown')
-            ->setLinkAttribute('data-bs-toggle', 'dropdown')
+            ->setLinkAttribute('href', \sprintf('#dropdown-%s', $identifier))
             ->setLinkAttribute('class', $linkClass)
+            ->setLinkAttribute('data-bs-toggle', 'dropdown')
+            ->setLinkAttribute('aria-expanded', 'false')
+            ->setChildrenAttribute('id', \sprintf('dropdown-%s', $identifier))
             ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end position-absolute shadow')
         ;
 
