@@ -36,8 +36,6 @@ final class SidebarMenuListener
 
         if (\array_key_exists('collapse', $classes)) {
             $item
-                ->setUri(null)
-                ->setLinkAttribute('role', 'button')
                 ->setLinkAttribute('data-bs-target', \sprintf('#collapse-%s', $identifier))
                 ->setLinkAttribute('data-bs-toggle', 'collapse')
                 ->setLinkAttribute('aria-expanded', \array_key_exists('show', $classes) ? 'true' : 'false')

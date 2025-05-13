@@ -36,9 +36,7 @@ final class NavbarMenuListener
             : 'nav-link d-flex align-items-center px-2';
 
         $item
-            ->setUri(null)
             ->setAttribute('class', 'nav-item dropdown')
-            ->setLinkAttribute('role', 'button')
             ->setLinkAttribute('data-bs-toggle', 'dropdown')
             ->setLinkAttribute('class', $linkClass)
             ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end position-absolute shadow')
