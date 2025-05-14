@@ -23,27 +23,20 @@ final class SidebarMenuListener
 
     private function addClassToItem(ItemInterface $item): ItemInterface
     {
-        $classes = array_filter([
-            'collapse' => $item->hasChildren(),
-            'show' => $this->matcher->isAncestor($item),
-        ], fn (bool $has) => $has);
+        if ($item->hasChildren()) {
+            $classes = $this->matcher->isAncestor($item)
+                ? ['collapse', 'show']
+                : ['collapse'];
 
-        // Generate item identifier for id attribute.
-        $identifier = spl_object_id($item);
-
-        $item->setChildrenAttribute('id', \sprintf('sidebar-%s', $identifier));
-        $item->setChildrenAttribute('class', implode(' ', array_keys($classes)));
-
-        if (\array_key_exists('collapse', $classes)) {
             $item
-                ->setLinkAttribute('href', \sprintf('#sidebar-%s', $identifier))
                 ->setLinkAttribute('data-bs-toggle', 'collapse')
-                ->setLinkAttribute('aria-expanded', \array_key_exists('show', $classes) ? 'true' : 'false')
+                ->setLinkAttribute('aria-expanded', \in_array('show', $classes) ? 'true' : 'false')
+                ->setChildrenAttribute('class', implode(' ', $classes))
             ;
         }
 
         if ($item->getParent()) {
-            $item->setChildrenAttribute('data-bs-parent', \sprintf('#sidebar-%s', spl_object_id($item->getParent())));
+            $item->setChildrenAttribute('data-bs-parent', '#'.ConfigureMenuListener::getAncestorIdentifier($item->getParent()));
         }
 
         array_map(fn (ItemInterface $child) => $this->addClassToItem($child), iterator_to_array($item));

@@ -31,20 +31,15 @@ final class NavbarMenuListener
 
     private function renderDropdown(ItemInterface $item): void
     {
-        $linkClass = $item->getExtra('show_label', true)
+        $class = $item->getExtra('show_label', true)
             ? 'nav-link d-flex align-items-center px-2 dropdown-toggle'
             : 'nav-link d-flex align-items-center px-2';
 
-        // Generate item identifier for id attribute.
-        $identifier = spl_object_id($item);
-
         $item
             ->setAttribute('class', 'nav-item dropdown')
-            ->setLinkAttribute('href', \sprintf('#navbar-%s', $identifier))
-            ->setLinkAttribute('class', $linkClass)
+            ->setLinkAttribute('class', $class)
             ->setLinkAttribute('data-bs-toggle', 'dropdown')
             ->setLinkAttribute('aria-expanded', 'false')
-            ->setChildrenAttribute('id', \sprintf('navbar-%s', $identifier))
             ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end position-absolute shadow')
         ;
 
