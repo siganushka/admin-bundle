@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log('ssssss', this)
     // const collapses = this.element.querySelectorAll('.collapse')
     // collapses.forEach(item => Collapse.getOrCreateInstance(item).toggle())
   }
