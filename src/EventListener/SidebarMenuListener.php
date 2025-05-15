@@ -33,10 +33,11 @@ final class SidebarMenuListener
                 ->setLinkAttribute('aria-expanded', \in_array('show', $classes) ? 'true' : 'false')
                 ->setChildrenAttribute('class', implode(' ', $classes))
             ;
-        }
 
-        if ($item->getParent()) {
-            $item->setChildrenAttribute('data-bs-parent', '#'.ConfigureMenuListener::getAncestorIdentifier($item->getParent()));
+            $parent = $item->getParent() ?? $item->getRoot();
+            if (\is_string($identifier = $parent->getChildrenAttribute('id'))) {
+                $item->setChildrenAttribute('data-bs-parent', '#'.$identifier);
+            }
         }
 
         array_map(fn (ItemInterface $child) => $this->addClassToItem($child), iterator_to_array($item));
