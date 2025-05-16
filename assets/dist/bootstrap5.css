@@ -1,18 +1,10 @@
-:root {
-  --bs-font-sans-serif:
-    /* system-ui, */
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    "Noto Sans",
-    "Liberation Sans",
-    Arial,
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
+/** Theme */
+html[data-bs-theme=light] [data-controller=siganushka-admin-theme] .bi::before {
+  content: '\F5A1';
+}
+
+html[data-bs-theme=dark] [data-controller=siganushka-admin-theme] .bi::before {
+  content: '\F495';
 }
 
 /** Sidebar */

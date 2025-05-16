@@ -22,7 +22,8 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('siganushka_admin.collapsed_cookie', $config['collapsed_cookie']);
+        $container->setParameter('siganushka_admin.theme_cookie', $config['theme_cookie']);
+        $container->setParameter('siganushka_admin.collapse_cookie', $config['collapse_cookie']);
 
         $builder = $container->findDefinition(Builder::class);
         $builder->addTag('knp_menu.menu_builder', ['method' => 'navbar', 'alias' => 'navbar']);

@@ -32,7 +32,7 @@
       </nav>
 
       <div class="d-flex flex-grow-1 overflow-hidden">
-        <aside class="bg-dark-subtle position-relative shadow{{ app.request.cookies.has(collapsed_cookie) ? ' collapsed' : null }}" {{ stimulus_controller('siganushka-admin', {collapsed_cookie}) }}>
+        <aside class="bg-dark-subtle position-relative shadow{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' : null }}" {{ stimulus_controller('siganushka-admin-collapse', {cookie: siganushka_admin_collapse_cookie}) }}>
           <div class="offcanvas-md offcanvas-start h-100 overflow-hidden overflow-y-auto" tabindex="-1" aria-labelledby="sidebarMenuLabel">
             <div class="offcanvas-body d-md-flex flex-column p-2">
               {% block sidebar %}
@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <button class="btn border-0 position-absolute bottom-0 end-0 text-dark-emphasis m-2" {{ stimulus_action('siganushka-admin', 'collapsed') }}>
+          <button class="btn border-0 position-absolute bottom-0 end-0 text-dark-emphasis m-2" {{ stimulus_action('siganushka-admin-collapse', 'collapsed') }}>
             <i class="bi bi-text-indent-right"></i>
           </button>
         </aside>

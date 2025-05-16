@@ -5,9 +5,16 @@
     "version": "0.1.0",
     "symfony": {
         "controllers": {
-            "admin": {
-                "main": "dist/controller.js",
-                "name": "siganushka-admin",
+            "theme": {
+                "main": "dist/theme.js",
+                "name": "siganushka-admin-theme",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            },
+            "collapse": {
+                "main": "dist/collapse.js",
+                "name": "siganushka-admin-collapse",
                 "webpackMode": "eager",
                 "fetch": "eager",
                 "enabled": true,

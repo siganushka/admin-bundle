@@ -15,9 +15,11 @@ class AddGlobalsVariable implements CompilerPassInterface
             return;
         }
 
-        $collapsedCookie = $container->getParameter('siganushka_admin.collapsed_cookie');
+        $themeCookie = $container->getParameter('siganushka_admin.theme_cookie');
+        $collapseCookie = $container->getParameter('siganushka_admin.collapse_cookie');
 
         $twig = $container->getDefinition('twig');
-        $twig->addMethodCall('addGlobal', ['collapsed_cookie', $collapsedCookie]);
+        $twig->addMethodCall('addGlobal', ['siganushka_admin_theme_cookie', $themeCookie]);
+        $twig->addMethodCall('addGlobal', ['siganushka_admin_collapse_cookie', $collapseCookie]);
     }
 }

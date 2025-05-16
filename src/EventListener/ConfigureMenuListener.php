@@ -10,8 +10,8 @@ use Siganushka\AdminBundle\Event\SidebarMenuEvent;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
-#[AsEventListener(NavbarMenuEvent::class, priority: -100)]
-#[AsEventListener(SidebarMenuEvent::class, priority: -100)]
+#[AsEventListener(NavbarMenuEvent::class, priority: -120)]
+#[AsEventListener(SidebarMenuEvent::class, priority: -120)]
 final class ConfigureMenuListener
 {
     public function __invoke(NavbarMenuEvent|SidebarMenuEvent $event): void

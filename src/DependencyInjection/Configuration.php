@@ -17,8 +17,11 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
 
         $rootNode->children()
-            ->scalarNode('collapsed_cookie')
-                ->defaultValue('collapsed')
+            ->scalarNode('theme_cookie')
+                ->defaultValue('theme')
+            ->end()
+            ->scalarNode('collapse_cookie')
+                ->defaultValue('collapse')
             ->end()
         ;
 

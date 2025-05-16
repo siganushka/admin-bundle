@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static values = {
-    collapsedCookie: String
+    cookie: String
   }
 
   connect() {
@@ -14,9 +14,9 @@ export default class extends Controller {
   }
 
   collapsed () {
-    const { element, collapsedCookieValue } = this
+    const { element, cookieValue } = this
     element.classList.toggle('collapsed')
-      ? Cookies.set(collapsedCookieValue, 1)
-      : Cookies.remove(collapsedCookieValue)
+      ? Cookies.set(cookieValue, 1)
+      : Cookies.remove(cookieValue)
   }
 }
