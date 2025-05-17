@@ -9,33 +9,34 @@ use Siganushka\AdminBundle\Event\NavbarMenuEvent;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[AsEventListener(priority: -128)]
-final class NavbarMenuListener
+final class ConfigureNavbarListener
 {
     public function __invoke(NavbarMenuEvent $event): void
     {
-        $item = $event->getItem();
-        $item->setChildrenAttribute('class', 'navbar-nav flex-row flex-wrap ms-auto');
+        $menu = $event->getMenu();
+        $menu->setChildrenAttribute('class', 'navbar-nav flex-row flex-wrap ms-auto');
 
-        foreach ($item as $child) {
+        foreach ($menu as $child) {
             $child->hasChildren()
-                ? $this->renderDropdown($child)
-                : $this->renderNavitem($child);
+                ? $this->configureDropdown($child)
+                : $this->configureNavitem($child);
         }
     }
 
-    private function renderNavitem(ItemInterface $item): void
+    private function configureNavitem(ItemInterface $menu): void
     {
-        $item->setAttribute('class', 'nav-item');
-        $item->setLinkAttribute('class', 'nav-link d-flex align-items-center px-2');
+        $menu->setAttribute('class', 'nav-item');
+        $menu->setLinkAttribute('class', 'nav-link d-flex align-items-center px-2');
     }
 
-    private function renderDropdown(ItemInterface $item): void
+    private function configureDropdown(ItemInterface $menu): void
     {
-        $class = $item->getExtra('show_label', true)
+        $class = $menu->getExtra('show_label', true)
             ? 'nav-link d-flex align-items-center px-2 dropdown-toggle'
             : 'nav-link d-flex align-items-center px-2';
 
-        $item
+        $menu
+            ->setUri(null)
             ->setAttribute('class', 'nav-item dropdown')
             ->setLinkAttribute('class', $class)
             ->setLinkAttribute('data-bs-toggle', 'dropdown')
@@ -43,6 +44,6 @@ final class NavbarMenuListener
             ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end position-absolute shadow')
         ;
 
-        array_map(fn (ItemInterface $child) => $child->setLinkAttribute('class', 'dropdown-item d-flex align-items-center'), iterator_to_array($item));
+        array_map(fn (ItemInterface $child) => $child->setLinkAttribute('class', 'dropdown-item d-flex align-items-center'), iterator_to_array($menu));
     }
 }

@@ -1,9 +1,9 @@
 /** Theme */
-html[data-bs-theme=light] [data-controller=siganushka-admin-theme] .bi::before {
+[data-bs-theme=light] [data-controller=siganushka-admin-theme] .bi::before {
   content: '\F5A1';
 }
 
-html[data-bs-theme=dark] [data-controller=siganushka-admin-theme] .bi::before {
+[data-bs-theme=dark] [data-controller=siganushka-admin-theme] .bi::before {
   content: '\F495';
 }
 
@@ -52,7 +52,7 @@ aside .offcanvas-md ul a[data-bs-toggle][aria-expanded=true]::after {
 
 aside .offcanvas-md ul a:hover,
 aside .offcanvas-md ul a:focus,
-aside .offcanvas-md ul .current > a {
+aside .offcanvas-md ul .current > a:not([data-bs-toggle]) {
   background-color: var(--bs-secondary-bg);
 }
 

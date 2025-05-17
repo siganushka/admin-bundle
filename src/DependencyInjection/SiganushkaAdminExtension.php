@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Siganushka\AdminBundle\DependencyInjection;
 
+use Siganushka\AdminBundle\EventListener\NavbarUserListener;
 use Siganushka\AdminBundle\Menu\Builder;
 use Siganushka\GenericBundle\DependencyInjection\SiganushkaGenericExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class SiganushkaAdminExtension extends Extension implements PrependExtensionInterface
@@ -28,6 +30,9 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
         $builder = $container->findDefinition(Builder::class);
         $builder->addTag('knp_menu.menu_builder', ['method' => 'navbar', 'alias' => 'navbar']);
         $builder->addTag('knp_menu.menu_builder', ['method' => 'sidebar', 'alias' => 'sidebar']);
+
+        $navbarUserListener = $container->findDefinition(NavbarUserListener::class);
+        $navbarUserListener->setArgument('$generator', new Reference('security.logout_url_generator'));
     }
 
     public function prepend(ContainerBuilder $container): void

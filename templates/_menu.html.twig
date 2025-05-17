@@ -2,7 +2,8 @@
 
 {% block spanElement %}
   {% import _self as knp_menu %}
-  <a{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>
+  {# Use button instead of span tags to enhance keyboard events (such as tab and enter keys) #}
+  <button type="button"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</button>
 {% endblock %}
 
 {% block label %}
