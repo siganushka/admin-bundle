@@ -17,7 +17,7 @@ final class ConfigureNavbarListener
         $menu->setChildrenAttribute('class', 'navbar-nav flex-row flex-wrap ms-auto');
 
         foreach ($menu as $child) {
-            $child->hasChildren()
+            $child->hasChildren() && $child->getDisplayChildren()
                 ? $this->configureDropdown($child)
                 : $this->configureNavitem($child);
         }

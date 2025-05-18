@@ -26,7 +26,7 @@ final class NavbarUserListener
         }
 
         $user = $event->getMenu()
-            ->addChild('siganushka_admin.navbar.user', ['uri' => 'https://cn.bing.com'])
+            ->addChild('siganushka_admin.navbar.user')
             ->setExtra('translation_params', ['%identifier%' => $user->getUserIdentifier()])
         ;
 
