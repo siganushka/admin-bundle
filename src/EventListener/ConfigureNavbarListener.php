@@ -41,7 +41,7 @@ final class ConfigureNavbarListener
             ->setLinkAttribute('class', $class)
             ->setLinkAttribute('data-bs-toggle', 'dropdown')
             ->setLinkAttribute('aria-expanded', 'false')
-            ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end position-absolute shadow')
+            ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end shadow')
         ;
 
         array_map(fn (ItemInterface $child) => $child->setLinkAttribute('class', 'dropdown-item d-flex align-items-center'), iterator_to_array($menu));
