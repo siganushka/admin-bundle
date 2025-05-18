@@ -37,8 +37,8 @@ final class ConfigureSidebarListener
                 ->setChildrenAttribute('class', implode(' ', $classes))
             ;
 
-            $parent = $menu->getParent() ?? $menu->getRoot();
-            if ($parentIdentifier = $parent->getChildrenAttribute('id')) {
+            $parentIdentifier = $menu->getParent()?->getChildrenAttribute('id');
+            if ($parentIdentifier) {
                 $menu->setChildrenAttribute('data-bs-parent', '#'.$parentIdentifier);
             }
         }
