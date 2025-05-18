@@ -12,11 +12,11 @@
   {% set show_label = item.getExtra('show_label', true) %}
 
   {% if img %}
-    <img src="{{ img }}" width="24" height="24" class="rounded-circle{% if show_label %} me-2{% endif %}">
+    <img src="{{ img }}" width="24" height="24" class="rounded-circle{{ show_label ? ' me-2' : null }}">
   {% endif %}
 
   {% if icon %}
-    <i class="bi bi-{{ icon }}{% if show_label %} me-2{% endif %}"></i>
+    <i class="bi bi-{{ icon }}{{ show_label ? ' me-2' : null }}"></i>
   {% endif %}
 
   {% if show_label %}
