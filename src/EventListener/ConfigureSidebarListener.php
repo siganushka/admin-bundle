@@ -28,7 +28,7 @@ final class ConfigureSidebarListener
     private function configure(ItemInterface $menu): void
     {
         if ($menu->hasChildren() && $menu->getDisplayChildren()) {
-            $classes = $this->matcher->isAncestor($menu)
+            $classes = $menu->isRoot() || $this->matcher->isAncestor($menu)
                 ? ['collapse', 'show']
                 : ['collapse'];
 
