@@ -26,7 +26,7 @@
           </button>
 
           {% block navbar %}
-            {{ knp_menu_render('navbar') }}
+            {{ knp_menu_render('navbar', {depth: 2}) }}
           {% endblock %}
         </div>
       </nav>
@@ -36,7 +36,7 @@
           <div class="offcanvas-md offcanvas-start h-100 overflow-hidden overflow-y-auto" tabindex="-1" aria-labelledby="sidebarMenuLabel">
             <div class="offcanvas-body d-md-flex flex-column p-2">
               {% block sidebar %}
-                {{ knp_menu_render('sidebar') }}
+                {{ knp_menu_render('sidebar', {depth: 3}) }}
               {% endblock %}
             </div>
           </div>

@@ -43,11 +43,6 @@ final class ConfigureSidebarListener
             }
         }
 
-        // Force to be an a tag (not a span)
-        if (null === $menu->getUri()) {
-            $menu->setUri('#');
-        }
-
         array_map(fn (ItemInterface $child) => $this->configure($child), iterator_to_array($menu));
     }
 
