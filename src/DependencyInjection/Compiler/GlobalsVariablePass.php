@@ -7,7 +7,7 @@ namespace Siganushka\AdminBundle\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class AddGlobalsVariablePass implements CompilerPassInterface
+class GlobalsVariablePass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
