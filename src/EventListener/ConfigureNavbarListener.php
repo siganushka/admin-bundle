@@ -6,15 +6,20 @@ namespace Siganushka\AdminBundle\EventListener;
 
 use Knp\Menu\ItemInterface;
 use Siganushka\AdminBundle\Event\NavbarMenuEvent;
+use Siganushka\AdminBundle\Menu\MenuPropertyAccessor;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[AsEventListener(priority: -128)]
 final class ConfigureNavbarListener
 {
+    public function __construct(private readonly MenuPropertyAccessor $accessor)
+    {
+    }
+
     public function __invoke(NavbarMenuEvent $event): void
     {
         $menu = $event->getMenu();
-        $menu->setChildrenAttribute('class', 'navbar-nav flex-row flex-wrap ms-auto');
+        $this->accessor->setValue($menu, 'childrenAttributes[class]', 'navbar-nav flex-row flex-wrap ms-auto');
 
         foreach ($menu as $child) {
             $child->hasChildren() && $child->getDisplayChildren()
@@ -25,8 +30,8 @@ final class ConfigureNavbarListener
 
     private function configureNavitem(ItemInterface $menu): void
     {
-        $menu->setAttribute('class', 'nav-item');
-        $menu->setLinkAttribute('class', 'nav-link d-flex align-items-center px-2');
+        $this->accessor->setValue($menu, 'attributes[class]', 'nav-item');
+        $this->accessor->setValue($menu, 'linkAttributes[class]', 'nav-link d-flex align-items-center px-2');
     }
 
     private function configureDropdown(ItemInterface $menu): void
@@ -35,14 +40,13 @@ final class ConfigureNavbarListener
             ? 'nav-link d-flex align-items-center px-2 dropdown-toggle'
             : 'nav-link d-flex align-items-center px-2';
 
-        $menu
-            ->setAttribute('class', 'nav-item dropdown')
-            ->setLinkAttribute('class', $class)
-            ->setLinkAttribute('data-bs-toggle', 'dropdown')
-            ->setLinkAttribute('aria-expanded', 'false')
-            ->setChildrenAttribute('class', 'dropdown-menu dropdown-menu-end shadow')
-        ;
+        $menu->setLinkAttribute('data-bs-toggle', 'dropdown');
+        $menu->setLinkAttribute('aria-expanded', 'false');
 
-        array_map(fn (ItemInterface $child) => $child->setLinkAttribute('class', 'dropdown-item d-flex align-items-center'), iterator_to_array($menu));
+        $this->accessor->setValue($menu, 'attributes[class]', 'nav-item dropdown');
+        $this->accessor->setValue($menu, 'LinkAttributes[class]', $class);
+        $this->accessor->setValue($menu, 'childrenAttributes[class]', 'dropdown-menu dropdown-menu-end shadow');
+
+        array_map(fn (ItemInterface $child) => $this->accessor->setValue($child, 'linkAttributes[class]', 'dropdown-item d-flex align-items-center'), iterator_to_array($menu));
     }
 }

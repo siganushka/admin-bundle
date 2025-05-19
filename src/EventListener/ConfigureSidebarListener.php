@@ -7,13 +7,16 @@ namespace Siganushka\AdminBundle\EventListener;
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\MatcherInterface;
 use Siganushka\AdminBundle\Event\SidebarMenuEvent;
+use Siganushka\AdminBundle\Menu\MenuPropertyAccessor;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[AsEventListener(priority: -128)]
 final class ConfigureSidebarListener
 {
-    public function __construct(private readonly MatcherInterface $matcher)
+    public function __construct(
+        private readonly MatcherInterface $matcher,
+        private readonly MenuPropertyAccessor $accessor)
     {
     }
 
@@ -34,8 +37,9 @@ final class ConfigureSidebarListener
                 ->setLinkAttribute('data-bs-toggle', 'collapse')
                 ->setLinkAttribute('aria-expanded', \in_array('show', $classes) ? 'true' : 'false')
                 ->setChildrenAttribute('id', $identifier)
-                ->setChildrenAttribute('class', implode(' ', $classes))
             ;
+
+            $this->accessor->setValue($menu, 'childrenAttributes[class]', implode(' ', $classes));
 
             $parentIdentifier = $menu->getParent()?->getChildrenAttribute('id');
             if ($parentIdentifier) {
