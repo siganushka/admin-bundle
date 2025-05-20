@@ -1,0 +1,60 @@
+{% extends '@SiganushkaAdmin/layout.html.twig' %}
+
+{% block main %}
+  <div class="row row-cols-1 row-cols-lg-2 g-3">
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header">系统信息</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            操作系统
+            <span class="badge text-bg-light">{{ osVersion }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            服务器软件
+            <span class="badge text-bg-light">{{ serverVersion }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            数据库版本
+            <span class="badge text-bg-light">{{ dbVersion }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            PHP 版本
+            <span class="badge text-bg-light">{{ phpVersion }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Symfony 版本
+            <a href="{{ symfonyVersionUrl }}" class="badge text-bg-light text-decoration-none" target="_blank">{{ symfonyVersion }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header">项目配置</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            当前环境
+            <span class="badge text-bg-light">{{ environment|upper }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            调试模式
+            <span class="badge text-bg-light">{{ isDebug ? '已开启' : '已禁用' }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            主机名称
+            <span class="badge text-bg-light">{{ projectHost }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            项目路径
+            <span class="badge text-bg-light">{{ projectDir }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            技术支持
+            <a href="mailto: siganushka@gmail.com" class="badge text-bg-light text-decoration-none">Siganushka (siganushka@gmail.com)</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

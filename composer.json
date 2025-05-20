@@ -16,7 +16,11 @@
         "knplabs/knp-menu-bundle": "^3.4",
         "siganushka/generic-bundle": "dev-main",
         "symfony/framework-bundle": "^6.4|^7.0",
+        "symfony/polyfill-php84": "^1.32",
         "symfony/security-bundle": "^6.4|^7.0"
+    },
+    "require-dev": {
+        "doctrine/dbal": "^4.2"
     },
     "autoload": {
         "psr-4": {
