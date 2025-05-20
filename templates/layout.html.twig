@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-bs-theme="auto">
+<html data-bs-theme="{{ app.request.cookies.get(siganushka_admin_theme_cookie)|default('auto') }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

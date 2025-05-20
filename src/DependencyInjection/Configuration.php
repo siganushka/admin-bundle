@@ -21,7 +21,7 @@ class Configuration implements ConfigurationInterface
                 ->defaultValue('theme')
             ->end()
             ->scalarNode('collapse_cookie')
-                ->defaultValue('collapse')
+                ->defaultValue('collapsed')
             ->end()
         ;
 
