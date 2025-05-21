@@ -1,60 +1,58 @@
 {% extends '@SiganushkaAdmin/layout.html.twig' %}
 
 {% block main %}
-  <div class="row row-cols-1 row-cols-lg-2 g-3">
-    <div class="col">
-      <div class="card">
-        <h5 class="card-header">系统信息</h5>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            操作系统
-            <span class="badge text-bg-light">{{ osVersion }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            服务器软件
-            <span class="badge text-bg-light">{{ serverVersion }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            数据库版本
-            <span class="badge text-bg-light">{{ dbVersion }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            PHP 版本
-            <span class="badge text-bg-light">{{ phpVersion }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Symfony 版本
-            <a href="{{ symfonyVersionUrl }}" class="badge text-bg-light text-decoration-none" target="_blank">{{ symfonyVersion }}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h5 class="card-header">项目配置</h5>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            当前环境
-            <span class="badge text-bg-light">{{ environment|upper }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            调试模式
-            <span class="badge text-bg-light">{{ isDebug ? '已开启' : '已禁用' }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            主机名称
-            <span class="badge text-bg-light">{{ projectHost }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            项目路径
-            <span class="badge text-bg-light">{{ projectDir }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            技术支持
-            <a href="mailto: siganushka@gmail.com" class="badge text-bg-light text-decoration-none">Siganushka (siganushka@gmail.com)</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div class="card">
+    <h5 class="card-header">{{ 'siganushka_admin.dashboard.system'|trans }}</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.platform'|trans }}
+        <span class="badge text-bg-light">{{ platform }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.server'|trans }}
+        <span class="badge text-bg-light">{{ server }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.database'|trans }}
+        <span class="badge text-bg-light">{{ database }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.php'|trans }}
+        <span class="badge text-bg-light">{{ php }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.symfony'|trans }}
+        <div>
+          {% set symfony_state_class = {dev: 'warning', stable: 'success', eom: 'warning', eol: 'danger'} %}
+          <span class="badge text-bg-{{ symfony_state_class[symfonyState] ?? 'light' }}">{{ ('siganushka_admin.dashboard.system.symfony.state_' ~ symfonyState)|trans }}</span>
+
+          <a href="{{ symfonyUrl }}" class="badge text-bg-light text-decoration-none" target="_blank">{{ symfony }}</a>
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.environment'|trans }}
+        <div>
+          {% if debug %}
+            <span class="badge text-bg-danger">{{ 'siganushka_admin.dashboard.system.debug'|trans }}</span>
+          {% endif %}
+          {% set environment_class = {dev: 'danger', test: 'warning', prod: 'success'} %}
+          <span class="badge text-bg-{{ environment_class[environment] ?? 'light' }}">
+            {{ ('siganushka_admin.dashboard.system.environment.' ~ environment)|trans }}
+          </span>
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.locale'|trans }}
+        <span class="badge text-bg-light">{{ locale }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.timezone'|trans }}
+        <span class="badge text-bg-light">{{ timezone }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ 'siganushka_admin.dashboard.system.support'|trans }}
+        <a href="mailto: siganushka@gmail.com" class="badge text-bg-light text-decoration-none">Siganushka (siganushka@gmail.com)</a>
+      </li>
+    </ul>
   </div>
 {% endblock %}
