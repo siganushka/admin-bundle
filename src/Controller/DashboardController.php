@@ -33,9 +33,6 @@ class DashboardController extends AbstractController
         $symfonyState = $this->determineSymfonyState();
         $symfonyUrl = \sprintf('https://symfony.com/releases/%d.%d', Kernel::MAJOR_VERSION, Kernel::MINOR_VERSION);
 
-        $locale = class_exists(\Locale::class, false) && \Locale::getDefault() ? \Locale::getDefault() : 'n/a';
-        $timezone = date_default_timezone_get();
-
         $environment = $kernel->getEnvironment();
         $debug = $kernel->isDebug();
 
@@ -47,8 +44,6 @@ class DashboardController extends AbstractController
             'symfony',
             'symfonyUrl',
             'symfonyState',
-            'locale',
-            'timezone',
             'environment',
             'debug',
         ));
