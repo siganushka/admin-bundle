@@ -17,33 +17,30 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\Routing\Attribute\Route;
 
 class DashboardController extends AbstractController
 {
-    #[Route('/dashboard', name: 'siganushka_admin_dashboard')]
-    public function dashboard(Request $request, KernelInterface $kernel, ?Connection $connection): Response
+    public function system(Request $request, KernelInterface $kernel, ?Connection $connection): Response
     {
         $platform = \sprintf('%s %s %s', php_uname('s'), php_uname('n'), php_uname('m'));
         $server = $request->server->get('SERVER_SOFTWARE', 'n/a');
         $database = $this->getDatabaseInfo($connection);
         $php = \sprintf('PHP %s (%d bits)', \PHP_VERSION, \PHP_INT_SIZE * 8);
-        /** @phpstan-ignore-next-line */
+        /* @phpstan-ignore-next-line */
         $symfony = \sprintf('Symfony %s%s', Kernel::VERSION, 4 === Kernel::MINOR_VERSION ? ' LTS' : '');
         $symfonyState = $this->determineSymfonyState();
         $symfonyUrl = \sprintf('https://symfony.com/releases/%d.%d', Kernel::MAJOR_VERSION, Kernel::MINOR_VERSION);
-
         $environment = $kernel->getEnvironment();
         $debug = $kernel->isDebug();
 
-        return $this->render('@SiganushkaAdmin/dashboard.html.twig', compact(
+        return $this->render('@SiganushkaAdmin/dashboard/system.html.twig', compact(
             'platform',
             'server',
             'database',
             'php',
             'symfony',
-            'symfonyUrl',
             'symfonyState',
+            'symfonyUrl',
             'environment',
             'debug',
         ));
@@ -78,18 +75,12 @@ class DashboardController extends AbstractController
         /** @phpstan-ignore-next-line */
         $eol = \DateTimeImmutable::createFromFormat('d/m/Y', '01/'.Kernel::END_OF_LIFE)->modify('last day of this month');
 
-        if ($now > $eol) {
-            $versionState = 'eol';
-        } elseif ($now > $eom) {
-            $versionState = 'eom';
-        }
-        /* @phpstan-ignore-next-line */
-        elseif ('' !== Kernel::EXTRA_VERSION) {
-            $versionState = 'dev';
-        } else {
-            $versionState = 'stable';
-        }
-
-        return $versionState;
+        return match (true) {
+            $now > $eol => 'eol',
+            $now > $eom => 'eom',
+            /* @phpstan-ignore-next-line */
+            '' !== Kernel::EXTRA_VERSION => 'dev',
+            default => 'stable',
+        };
     }
 }

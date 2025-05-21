@@ -7,7 +7,7 @@ namespace Siganushka\AdminBundle\Event;
 use Knp\Menu\ItemInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
-class ConfigureMenuEvent extends Event
+class AbstractMenuEvent extends Event
 {
     public function __construct(private readonly ItemInterface $menu)
     {
