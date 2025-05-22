@@ -15,11 +15,8 @@ class GlobalsVariablePass implements CompilerPassInterface
             return;
         }
 
-        $themeCookie = $container->getParameter('siganushka_admin.theme_cookie');
-        $collapseCookie = $container->getParameter('siganushka_admin.collapse_cookie');
-
         $twig = $container->getDefinition('twig');
-        $twig->addMethodCall('addGlobal', ['siganushka_admin_theme_cookie', $themeCookie]);
-        $twig->addMethodCall('addGlobal', ['siganushka_admin_collapse_cookie', $collapseCookie]);
+        $twig->addMethodCall('addGlobal', ['siganushka_admin_theme_cookie', $container->getParameter('siganushka_admin.theme_cookie')]);
+        $twig->addMethodCall('addGlobal', ['siganushka_admin_collapse_cookie', $container->getParameter('siganushka_admin.collapse_cookie')]);
     }
 }
