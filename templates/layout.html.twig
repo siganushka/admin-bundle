@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-bs-theme="{{ app.request.cookies.get(siganushka_admin_theme_cookie)|default('auto') }}">
+<html data-bs-theme="{{ app.request.cookies.get(siganushka_admin_theme_cookie) ?? 'auto' }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +32,7 @@
       </nav>
 
       <div class="d-flex flex-grow-1 overflow-hidden">
-        <aside class="bg-dark-subtle position-relative shadow{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' : null }}" {{ stimulus_controller('siganushka-admin-collapse', {cookie: siganushka_admin_collapse_cookie}) }}>
+        <aside class="bg-dark-subtle position-relative shadow{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}" {{ stimulus_controller('siganushka-admin-collapse', {cookie: siganushka_admin_collapse_cookie}) }}>
           <div class="offcanvas-md offcanvas-start h-100 overflow-hidden overflow-y-auto" tabindex="-1" aria-labelledby="sidebarMenuLabel">
             <div class="offcanvas-body d-md-flex flex-column p-2">
               {% block sidebar %}

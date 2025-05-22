@@ -39,7 +39,7 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
     {
         $container->prependExtensionConfig('knp_menu', [
             'twig' => [
-                'template' => '@SiganushkaAdmin/_menu.html.twig',
+                'template' => '@SiganushkaAdmin/menu.html.twig',
             ],
         ]);
 

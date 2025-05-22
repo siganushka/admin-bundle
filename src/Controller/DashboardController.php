@@ -33,7 +33,7 @@ class DashboardController extends AbstractController
         $environment = $kernel->getEnvironment();
         $debug = $kernel->isDebug();
 
-        return $this->render('@SiganushkaAdmin/dashboard/system.html.twig', compact(
+        return $this->render('@SiganushkaAdmin/system.html.twig', compact(
             'platform',
             'server',
             'database',
