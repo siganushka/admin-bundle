@@ -21,10 +21,12 @@
     <li class="list-group-item d-flex justify-content-between align-items-center">
       {{ 'siganushka_admin.dashboard.system.symfony'|trans }}
       <span>
-        {% set symfony_state_class = {eom: 'warning', eol: 'danger'} %}
-        {% if symfonyState in symfony_state_class|keys %}
-          <span class="badge rounded-pill text-bg-{{ symfony_state_class[symfonyState] }}">{{ ('siganushka_admin.dashboard.system.symfony.state_' ~ symfonyState)|trans }}</span>
+        {% if symfonyState == 'eom' %}
+          <span class="badge rounded-pill text-bg-warning">{{ 'siganushka_admin.dashboard.system.symfony.eom'|trans }}</span>
+        {% elseif symfonyState == 'eol' %}
+          <span class="badge rounded-pill text-bg-danger">{{ 'siganushka_admin.dashboard.system.symfony.eol'|trans }}</span>
         {% endif %}
+
         <a href="{{ symfonyUrl }}" class="text-decoration-none" target="_blank">{{ symfony }}</a>
       </span>
     </li>
@@ -34,10 +36,14 @@
         {% if debug %}
           <span class="badge rounded-pill text-bg-danger">{{ 'siganushka_admin.dashboard.system.debug'|trans }}</span>
         {% endif %}
-        {% set environment_class = {dev: 'danger', test: 'warning', prod: 'success'} %}
-        <span class="badge rounded-pill text-bg-{{ environment_class[environment] ?? 'secondary' }}">
-          {{ ('siganushka_admin.dashboard.system.environment.' ~ environment)|trans }}
-        </span>
+
+        {% if environment == 'prod' %}
+          <span class="badge rounded-pill text-bg-success">{{ 'siganushka_admin.dashboard.system.environment.prod'|trans }}</span>
+        {% elseif environment == 'test' %}
+          <span class="badge rounded-pill text-bg-warning">{{ 'siganushka_admin.dashboard.system.environment.test'|trans }}</span>
+        {% else %}
+          <span class="badge rounded-pill text-bg-danger">{{ 'siganushka_admin.dashboard.system.environment.dev'|trans }}</span>
+        {% endif %}
       </span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
