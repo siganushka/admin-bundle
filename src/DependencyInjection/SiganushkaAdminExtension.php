@@ -9,10 +9,10 @@ use Siganushka\AdminBundle\Menu\Builder;
 use Siganushka\GenericBundle\DependencyInjection\SiganushkaGenericExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class SiganushkaAdminExtension extends Extension implements PrependExtensionInterface
 {
