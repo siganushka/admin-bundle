@@ -44,7 +44,7 @@ final class ConfigureNavbarListener
         $menu->setLinkAttribute('aria-expanded', 'false');
 
         $this->accessor->setValue($menu, 'attributes[class]', 'nav-item dropdown');
-        $this->accessor->setValue($menu, 'LinkAttributes[class]', $class);
+        $this->accessor->setValue($menu, 'linkAttributes[class]', $class);
         $this->accessor->setValue($menu, 'childrenAttributes[class]', 'dropdown-menu dropdown-menu-end shadow');
 
         array_map(fn (ItemInterface $child) => $this->accessor->setValue($child, 'linkAttributes[class]', 'dropdown-item d-flex align-items-center'), iterator_to_array($menu));
