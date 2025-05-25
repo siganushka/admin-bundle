@@ -9,8 +9,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 
-#[AsEventListener(method: 'onNavbarMenu', priority: -16)]
-#[AsEventListener(method: 'changeNavbarMenu', priority: -24)]
+#[AsEventListener(priority: -16)]
 final class NavbarUserListener
 {
     public function __construct(
@@ -19,25 +18,17 @@ final class NavbarUserListener
     {
     }
 
-    public function onNavbarMenu(NavbarMenuEvent $event): void
+    public function __invoke(NavbarMenuEvent $event): void
     {
         $user = $this->security->getUser();
         if (!$user) {
             return;
         }
 
-        $event->getMenu()
+        $menu = $event->getMenu()
             ->addChild('siganushka_admin.navbar.user')
             ->setExtra('translation_params', ['%identifier%' => $user->getUserIdentifier()])
         ;
-    }
-
-    public function changeNavbarMenu(NavbarMenuEvent $event): void
-    {
-        $menu = $event->getMenu()->getChild('siganushka_admin.navbar.user');
-        if (!$menu) {
-            return;
-        }
 
         try {
             $logoutUrl = $this->generator?->getLogoutPath();
@@ -46,8 +37,7 @@ final class NavbarUserListener
         }
 
         if ($logoutUrl) {
-            $menu
-                ->addChild('siganushka_admin.navbar.user.logout')
+            $menu->addChild('siganushka_admin.navbar.user.logout')
                 ->setUri($logoutUrl)
                 ->setLinkAttribute('class', 'text-danger')
                 ->setExtra('icon', 'box-arrow-right')

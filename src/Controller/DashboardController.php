@@ -48,7 +48,7 @@ class DashboardController extends AbstractController
 
     private function getDatabaseInfo(?Connection $connection): string
     {
-        $dbPlatform = array_find([
+        $dbPlatformMapping = [
             MySQLPlatform::class => 'MySQL',
             MariaDBPlatform::class => 'MariaDB',
             PostgreSQLPlatform::class => 'PostgreSQL',
@@ -56,7 +56,15 @@ class DashboardController extends AbstractController
             SQLServerPlatform::class => 'SQLServer',
             SQLitePlatform::class => 'SQLite',
             DB2Platform::class => 'DB2',
-        ], fn ($_, $class) => $connection?->getDatabasePlatform() instanceof $class);
+        ];
+
+        $dbPlatform = null;
+        foreach ($dbPlatformMapping as $class => $name) {
+            if ($connection?->getDatabasePlatform() instanceof $class) {
+                $dbPlatform = $name;
+                break;
+            }
+        }
 
         try {
             $dbPlatformVersion = $connection?->getServerVersion();
