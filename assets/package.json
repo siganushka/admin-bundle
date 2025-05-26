@@ -6,11 +6,11 @@
     "main": "dist/entrypoint.js",
     "symfony": {
         "importmap": {
+            "admin": "entrypoint:%PACKAGE%/dist/entrypoint.js",
             "@hotwired/stimulus": "^3.0",
             "js-cookie": "^3.0",
             "bootstrap": "^5.3",
-            "bootstrap-icons/font/bootstrap-icons.min.css": "^1.13",
-            "@siganushka/admin-bundle": "entrypoint:%PACKAGE%/dist/entrypoint.js"
+            "bootstrap-icons/font/bootstrap-icons.min.css": "^1.13"
         }
     },
     "peerDependencies": {
