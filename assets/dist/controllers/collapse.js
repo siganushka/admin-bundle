@@ -13,7 +13,7 @@ export default class extends Controller {
     // collapses.forEach(item => Collapse.getOrCreateInstance(item).toggle())
   }
 
-  collapsed () {
+  toggle () {
     const { element, cookieValue } = this
     element.classList.toggle('collapsed')
       ? Cookies.set(cookieValue, 1)

@@ -3,32 +3,20 @@
     "description": "Admin bundle integration for Symfony",
     "license": "MIT",
     "version": "0.1.0",
+    "main": "dist/entrypoint.js",
     "symfony": {
-        "controllers": {
-            "theme": {
-                "main": "dist/theme.js",
-                "name": "siganushka-admin-theme",
-                "webpackMode": "eager",
-                "fetch": "eager",
-                "enabled": true
-            },
-            "collapse": {
-                "main": "dist/collapse.js",
-                "name": "siganushka-admin-collapse",
-                "webpackMode": "eager",
-                "fetch": "eager",
-                "enabled": true,
-                "autoimport": {
-                    "@siganushka/admin-bundle/dist/bootstrap5.css": true
-                }
-            }
-        },
         "importmap": {
             "@hotwired/stimulus": "^3.0",
-            "js-cookie": "^3.0"
+            "js-cookie": "^3.0",
+            "bootstrap": "^5.3",
+            "bootstrap-icons/font/bootstrap-icons.min.css": "^1.13",
+            "@siganushka/admin-bundle": "entrypoint:%PACKAGE%/dist/entrypoint.js"
         }
     },
     "peerDependencies": {
-        "@hotwired/stimulus": "^3.0.0"
+        "@hotwired/stimulus": "^3.0",
+        "js-cookie": "^3.0",
+        "bootstrap": "^5.3",
+        "bootstrap-icons": "^1.13"
     }
 }

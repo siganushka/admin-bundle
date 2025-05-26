@@ -8,7 +8,7 @@
     {% endblock %}
 
     {% block javascripts %}
-      {% block importmap %}{{ importmap('app') }}{% endblock %}
+      {% block importmap %}{{ importmap('@siganushka/admin-bundle') }}{% endblock %}
     {% endblock %}
   </head>
   <body class="d-flex flex-column vh-100">
@@ -23,6 +23,7 @@
 
           <button class="navbar-toggler d-md-none px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="aside .offcanvas-md" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle Sidebar">
             <span class="navbar-toggler-icon"></span>
+            <span class="d-none">Navbar Toggler</span>
           </button>
 
           {% block navbar %}
@@ -32,7 +33,11 @@
       </nav>
 
       <div class="d-flex flex-grow-1 overflow-hidden">
-        <aside class="bg-dark-subtle position-relative shadow{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}" {{ stimulus_controller('siganushka-admin-collapse', {cookie: siganushka_admin_collapse_cookie}) }}>
+        <aside
+          class="bg-dark-subtle position-relative shadow{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}"
+          data-controller="siganushka-admin-collapse"
+          data-siganushka-admin-collapse-cookie-value="{{ siganushka_admin_collapse_cookie }}"
+        >
           <div class="offcanvas-md offcanvas-start h-100 overflow-hidden overflow-y-auto" tabindex="-1" aria-labelledby="sidebarMenuLabel">
             <div class="offcanvas-body d-md-flex flex-column p-2">
               {% block sidebar %}
@@ -41,8 +46,9 @@
             </div>
           </div>
 
-          <button class="btn border-0 position-absolute bottom-0 end-0 text-dark-emphasis m-2" {{ stimulus_action('siganushka-admin-collapse', 'collapsed') }}>
+          <button class="btn border-0 position-absolute bottom-0 end-0 text-dark-emphasis m-2" data-action="siganushka-admin-collapse#toggle">
             <i class="bi bi-text-indent-right"></i>
+            <span class="d-none">Sidebar Toggler</span>
           </button>
         </aside>
 

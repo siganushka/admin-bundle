@@ -1,3 +1,6 @@
+/assets/node_modules/
+/assets/package-lock.json
+/assets/yarn.lock
 /vendor/
 /composer.lock
 /tools/vendor
