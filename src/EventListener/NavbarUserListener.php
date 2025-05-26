@@ -14,7 +14,7 @@ final class NavbarUserListener
 {
     public function __construct(
         private readonly Security $security,
-        private readonly ?LogoutUrlGenerator $generator = null)
+        private readonly LogoutUrlGenerator $generator)
     {
     }
 
@@ -31,17 +31,15 @@ final class NavbarUserListener
         ;
 
         try {
-            $logoutUrl = $this->generator?->getLogoutPath();
+            $logoutUrl = $this->generator->getLogoutPath();
         } catch (\Exception) {
-            $logoutUrl = null;
+            return;
         }
 
-        if ($logoutUrl) {
-            $menu->addChild('siganushka_admin.navbar.user.logout')
-                ->setUri($logoutUrl)
-                ->setLinkAttribute('class', 'text-danger')
-                ->setExtra('icon', 'box-arrow-right')
-            ;
-        }
+        $menu->addChild('siganushka_admin.navbar.user.logout')
+            ->setUri($logoutUrl)
+            ->setLinkAttribute('class', 'text-danger')
+            ->setExtra('icon', 'box-arrow-right')
+        ;
     }
 }
