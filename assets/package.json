@@ -16,7 +16,6 @@
     "peerDependencies": {
         "@hotwired/stimulus": "^3.0",
         "js-cookie": "^3.0",
-        "bootstrap": "^5.3",
-        "bootstrap-icons": "^1.13"
+        "bootstrap": "^5.3"
     }
 }
