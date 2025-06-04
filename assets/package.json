@@ -6,7 +6,7 @@
     "main": "dist/entrypoint.js",
     "symfony": {
         "importmap": {
-            "admin": "entrypoint:%PACKAGE%/dist/entrypoint.js",
+            "admin": "entrypoint:%PACKAGE%/dist/admin.js",
             "@hotwired/stimulus": "^3.0",
             "js-cookie": "^3.0",
             "bootstrap": "^5.3",
