@@ -20,31 +20,31 @@
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       {{ 'siganushka_admin.dashboard.system.symfony'|trans }}
-      <span>
-        {% if symfonyState == 'eom' %}
+      <div>
+        {% if symfonyState == 'eom' -%}
           <span class="badge rounded-pill text-bg-warning">{{ 'siganushka_admin.dashboard.system.symfony.eom'|trans }}</span>
-        {% elseif symfonyState == 'eol' %}
+        {% elseif symfonyState == 'eol' -%}
           <span class="badge rounded-pill text-bg-danger">{{ 'siganushka_admin.dashboard.system.symfony.eol'|trans }}</span>
-        {% endif %}
+        {% endif -%}
 
         <a href="{{ symfonyUrl }}" class="text-decoration-none" target="_blank">{{ symfony }}</a>
-      </span>
+      </div>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       {{ 'siganushka_admin.dashboard.system.environment'|trans }}
-      <span>
-        {% if debug %}
+      <div>
+        {% if debug -%}
           <span class="badge rounded-pill text-bg-danger">{{ 'siganushka_admin.dashboard.system.debug'|trans }}</span>
-        {% endif %}
+        {% endif -%}
 
-        {% if environment == 'prod' %}
+        {%- if environment == 'prod' -%}
           <span class="badge rounded-pill text-bg-success">{{ 'siganushka_admin.dashboard.system.environment.prod'|trans }}</span>
-        {% elseif environment == 'test' %}
+        {%- elseif environment == 'test' -%}
           <span class="badge rounded-pill text-bg-warning">{{ 'siganushka_admin.dashboard.system.environment.test'|trans }}</span>
-        {% else %}
+        {%- else -%}
           <span class="badge rounded-pill text-bg-danger">{{ 'siganushka_admin.dashboard.system.environment.dev'|trans }}</span>
-        {% endif %}
-      </span>
+        {%- endif ~%}
+      </div>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       {{ 'siganushka_admin.dashboard.system.support'|trans }}
