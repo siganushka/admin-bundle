@@ -34,7 +34,7 @@
 
       <div class="d-flex flex-grow-1 overflow-hidden">
         <aside
-          class="bg-dark-subtle position-relative shadow{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}"
+          class="position-relative shadow{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}"
           data-controller="siganushka-admin-collapse"
           data-siganushka-admin-collapse-cookie-value="{{ siganushka_admin_collapse_cookie }}"
         >
@@ -52,7 +52,7 @@
           </button>
         </aside>
 
-        <main class="flex-grow-1 overflow-auto p-3">
+        <main class="flex-grow-1 overflow-auto bg-body-secondary p-3">
           {% block flashes %}
             {% for label, messages in app.flashes %}
               {% for message in messages %}
