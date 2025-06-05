@@ -8,8 +8,9 @@ use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\MatcherInterface;
 use Siganushka\AdminBundle\Event\SidebarMenuEvent;
 use Siganushka\AdminBundle\Menu\MenuPropertyAccessor;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+
+use function Symfony\Component\String\u;
 
 #[AsEventListener(priority: -128)]
 final class ConfigureSidebarListener
@@ -55,7 +56,7 @@ final class ConfigureSidebarListener
         $ancestors = [];
 
         do {
-            array_unshift($ancestors, Container::camelize($menu->getName()));
+            array_unshift($ancestors, u($menu->getName())->kebab());
         } while ($menu = $menu->getParent());
 
         return implode('-', $ancestors);
