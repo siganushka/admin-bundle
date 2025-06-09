@@ -25,7 +25,7 @@ class DashboardController extends AbstractController
         $platform = \sprintf('%s %s %s', php_uname('s'), php_uname('n'), php_uname('m'));
         $server = $request->server->get('SERVER_SOFTWARE', 'n/a');
         $database = $this->getDatabaseInfo($connection);
-        $php = \sprintf('PHP %s (%d bits)', \PHP_VERSION, \PHP_INT_SIZE * 8);
+        $php = \sprintf('PHP %s', \PHP_VERSION);
         /* @phpstan-ignore-next-line */
         $symfony = \sprintf('Symfony %s%s', Kernel::VERSION, 4 === Kernel::MINOR_VERSION ? ' LTS' : '');
         $symfonyState = $this->determineSymfonyState();
