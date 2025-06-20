@@ -3,7 +3,7 @@
     "description": "Admin bundle integration for Symfony",
     "license": "MIT",
     "version": "0.1.0",
-    "main": "dist/entrypoint.js",
+    "main": "dist/admin.js",
     "symfony": {
         "importmap": {
             "admin": "entrypoint:%PACKAGE%/dist/admin.js",
