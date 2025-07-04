@@ -36,7 +36,7 @@ aside .navbar .navbar-brand {
 aside .navbar,
 aside .offcanvas-md {
   width: 240px !important;
-  transition: width .15s ease-in-out
+  transition: width .15s ease-in-out;
 }
 
 aside .offcanvas-md ul {
@@ -98,11 +98,11 @@ body.collapsed > main > .navbar .navbar-toggler .bi::before {
     width: 56px !important;
   }
 
-  body.collapsed > aside:not(:hover) .navbar-brand .text-truncate,
+  body.collapsed > aside:not(:hover) .navbar .navbar-brand .text-truncate,
   body.collapsed > aside:not(:hover) .offcanvas-md ul a > span,
   body.collapsed > aside:not(:hover) .offcanvas-md ul a + ul,
   body.collapsed > aside:not(:hover) .offcanvas-md ul a[data-bs-toggle]::after {
-    display: none;
+    opacity: 0;
   }
 }
 
