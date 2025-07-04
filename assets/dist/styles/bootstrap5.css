@@ -24,7 +24,16 @@
   content: '\F495';
 }
 
+/** Logo */
+aside .navbar .navbar-brand {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: .35rem;
+}
+
 /** Sidebar */
+aside .navbar,
 aside .offcanvas-md {
   width: 240px !important;
   transition: width .15s ease-in-out
@@ -34,10 +43,6 @@ aside .offcanvas-md ul {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-aside .offcanvas-md ul:first-child {
-  padding-bottom: 2.5rem;
 }
 
 aside .offcanvas-md ul a {
@@ -51,7 +56,6 @@ aside .offcanvas-md ul a {
   white-space: nowrap !important;
 }
 
-/** level => 2/3 */
 aside .offcanvas-md ul a + ul a { padding-left: 2.25rem; }
 aside .offcanvas-md ul a + ul a + ul a { padding-left: 3.75rem; }
 
@@ -73,29 +77,33 @@ aside .offcanvas-md ul .current > a:not([data-bs-toggle]) {
   background-color: var(--bs-secondary-bg);
 }
 
-/** Sidebar collapsed button */
-aside > button {
+/** Collapsed button */
+main > .navbar .navbar-toggler {
   --bs-btn-hover-bg: var(--bs-secondary-bg);
   --bs-btn-active-bg: var(--bs-secondary-bg);
 }
 
-aside > button .bi::before {
+main > .navbar .navbar-toggler .bi::before {
   transition: transform 0.15s ease-in-out;
 }
 
-/** Sidebar collapsed */
-aside.collapsed > button .bi::before {
+/** Collapsed */
+body.collapsed > main > .navbar .navbar-toggler .bi::before {
   transform: rotate(180deg) !important;
 }
 
-aside.collapsed:not(:hover) .offcanvas-md {
-  width: 56px !important;
-}
+@media (min-width: 768px) {
+  body.collapsed > aside:not(:hover) .navbar,
+  body.collapsed > aside:not(:hover) .offcanvas-md {
+    width: 56px !important;
+  }
 
-aside.collapsed:not(:hover) .offcanvas-md ul a > span,
-aside.collapsed:not(:hover) .offcanvas-md ul a + ul,
-aside.collapsed:not(:hover) .offcanvas-md ul a[data-bs-toggle]::after {
-  display: none;
+  body.collapsed > aside:not(:hover) .navbar-brand .text-truncate,
+  body.collapsed > aside:not(:hover) .offcanvas-md ul a > span,
+  body.collapsed > aside:not(:hover) .offcanvas-md ul a + ul,
+  body.collapsed > aside:not(:hover) .offcanvas-md ul a[data-bs-toggle]::after {
+    display: none;
+  }
 }
 
 /** Sidebar scrollbar */

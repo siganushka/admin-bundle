@@ -11,19 +11,43 @@
       {% block importmap %}{{ importmap('admin') }}{% endblock %}
     {% endblock %}
   </head>
-  <body class="d-flex flex-column vh-100">
-    {% block body %}
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow">
+  <body
+    class="d-flex vh-100{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}"
+    data-controller="siganushka-admin-collapse"
+    data-siganushka-admin-collapse-cookie-value="{{ siganushka_admin_collapse_cookie }}"
+  >
+    <aside class="d-flex flex-column position-relative shadow-sm">
+      <nav class="navbar navbar-expand-md shadow-sm d-none d-md-block">
         <div class="container-fluid">
           {% block logo %}
-          <span class="navbar-brand d-none d-md-block">
-            <i class="bi bi-bootstrap-fill me-2"></i> Dashboard
-          </span>
+          <a href="#" class="navbar-brand">
+            <i class="bi bi-bootstrap-fill me-2"></i>
+            <span class="text-truncate">Dashboard</span>
+          </a>
           {% endblock %}
+        </div>
+      </nav>
 
+      <div class="offcanvas-md offcanvas-start flex-grow-1 overflow-y-auto" tabindex="-1" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-body d-md-flex flex-column p-2">
+          {% block sidebar %}
+            {{ knp_menu_render('sidebar', {depth: 3}) }}
+          {% endblock %}
+        </div>
+      </div>
+    </aside>
+
+    <main class="d-flex flex-column flex-grow-1 bg-body-secondary">
+      <nav class="navbar navbar-expand-md shadow-sm">
+        <div class="container-fluid">
           <button class="navbar-toggler d-md-none px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="aside .offcanvas-md" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle Sidebar">
             <span class="navbar-toggler-icon"></span>
             <span class="d-none">Navbar Toggler</span>
+          </button>
+
+          <button class="navbar-toggler d-none d-md-block border-0 px-2" data-action="siganushka-admin-collapse#toggle">
+            <i class="bi bi-text-indent-right"></i>
+            <span class="d-none">Sidebar Toggler</span>
           </button>
 
           {% block navbar %}
@@ -32,41 +56,28 @@
         </div>
       </nav>
 
-      <div class="d-flex flex-grow-1 overflow-hidden">
-        <aside
-          class="position-relative shadow bg-body{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}"
-          data-controller="siganushka-admin-collapse"
-          data-siganushka-admin-collapse-cookie-value="{{ siganushka_admin_collapse_cookie }}"
-        >
-          <div class="offcanvas-md offcanvas-start h-100 overflow-hidden overflow-y-auto" tabindex="-1" aria-labelledby="sidebarMenuLabel">
-            <div class="offcanvas-body d-md-flex flex-column p-2">
-              {% block sidebar %}
-                {{ knp_menu_render('sidebar', {depth: 3}) }}
-              {% endblock %}
+      {% block flashes %}
+        {% for label, messages in app.flashes %}
+          {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-          </div>
+          {% endfor %}
+        {% endfor %}
+      {% endblock %}
 
-          <button class="btn border-0 position-absolute bottom-0 end-0 text-dark-emphasis m-2" data-action="siganushka-admin-collapse#toggle">
-            <i class="bi bi-text-indent-right"></i>
-            <span class="d-none">Sidebar Toggler</span>
-          </button>
-        </aside>
+      <div class="flex-grow-1 overflow-hidden overflow-y-auto p-3">
+        {% block main %}
+          {{ render(controller('Siganushka\\AdminBundle\\Controller\\DashboardController::system')) }}
 
-        <main class="flex-grow-1 overflow-auto bg-body-secondary p-3">
-          {% block flashes %}
-            {% for label, messages in app.flashes %}
-              {% for message in messages %}
-                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
-                  {{ message }}
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-              {% endfor %}
-            {% endfor %}
-          {% endblock %}
-
-          {% block main %}{% endblock %}
-        </main>
+          <h1>Hello World!!!</h1>
+          <h1>Hello World!!!</h1>
+          <h1>Hello World!!!</h1>
+          <h1>Hello World!!!</h1>
+          <h1>Hello World!!!</h1>
+        {% endblock %}
       </div>
-    {% endblock %}
+    </main>
   </body>
 </html>
