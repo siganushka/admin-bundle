@@ -16,8 +16,8 @@
     data-controller="siganushka-admin-collapse"
     data-siganushka-admin-collapse-cookie-value="{{ siganushka_admin_collapse_cookie }}"
   >
-    <aside class="d-flex flex-column position-relative bg-dark shadow-sm" data-bs-theme="dark">
-      <nav class="navbar navbar-expand-md shadow-sm d-none d-md-block">
+    <aside class="d-flex flex-column bg-dark shadow h-100" data-bs-theme="dark">
+      <nav class="navbar navbar-expand-md shadow d-none d-md-block">
         <div class="container-fluid">
           {% block logo %}
           <span class="navbar-brand">
@@ -38,7 +38,7 @@
     </aside>
 
     <main class="d-flex flex-column flex-grow-1 bg-body-secondary">
-      <nav class="navbar navbar-expand-md shadow-sm bg-body">
+      <nav class="navbar navbar-expand-md shadow bg-body">
         <div class="container-fluid">
           <button class="navbar-toggler d-md-none px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="aside .offcanvas-md" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle Sidebar">
             <span class="navbar-toggler-icon"></span>

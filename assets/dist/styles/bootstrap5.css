@@ -85,15 +85,35 @@ body.collapsed > main > .navbar .navbar-toggler .bi::before {
 }
 
 @media (min-width: 768px) {
+  body.collapsed > aside {
+    position: absolute;
+    z-index: 9;
+  }
+
+  body.collapsed > main {
+    padding-left: 54px;
+  }
+
   body.collapsed > aside:not(:hover) .navbar,
   body.collapsed > aside:not(:hover) .offcanvas-md {
     width: 56px !important;
   }
 
-  body.collapsed > aside:not(:hover) .navbar .navbar-brand .text-truncate,
-  body.collapsed > aside:not(:hover) .offcanvas-md ul a > span,
-  body.collapsed > aside:not(:hover) .offcanvas-md ul a + ul,
+  body.collapsed > aside:not(:hover) .navbar .navbar-brand,
+  body.collapsed > aside:not(:hover) .offcanvas-md ul a,
   body.collapsed > aside:not(:hover) .offcanvas-md ul a[data-bs-toggle]::after {
+    font-size: 0;
+  }
+
+  body.collapsed > aside:not(:hover) .navbar .navbar-brand .bi:first-child {
+    font-size: var(--bs-navbar-brand-font-size);
+  }
+
+  body.collapsed > aside:not(:hover) .offcanvas-md ul a .bi:first-child {
+    font-size: var(--bs-body-font-size);
+  }
+
+  body.collapsed > aside:not(:hover) .offcanvas-md ul a + ul {
     display: none;
   }
 }
