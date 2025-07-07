@@ -1,8 +1,6 @@
 :root {
   --bs-font-sans-serif:
-    /* system-ui, */
     -apple-system,
-    /* "Segoe UI", */
     Roboto,
     "Helvetica Neue",
     "Noto Sans",
@@ -15,7 +13,6 @@
     "Noto Color Emoji";
 }
 
-/** Theme */
 [data-bs-theme=light] [data-controller=siganushka-admin-theme] .bi::before {
   content: '\F5A1';
 }
@@ -78,11 +75,6 @@ aside .offcanvas-md ul .current > a:not([data-bs-toggle]) {
 }
 
 /** Collapsed button */
-main > .navbar .navbar-toggler {
-  --bs-btn-hover-bg: var(--bs-secondary-bg);
-  --bs-btn-active-bg: var(--bs-secondary-bg);
-}
-
 main > .navbar .navbar-toggler .bi::before {
   transition: transform 0.15s ease-in-out;
 }
@@ -102,7 +94,7 @@ body.collapsed > main > .navbar .navbar-toggler .bi::before {
   body.collapsed > aside:not(:hover) .offcanvas-md ul a > span,
   body.collapsed > aside:not(:hover) .offcanvas-md ul a + ul,
   body.collapsed > aside:not(:hover) .offcanvas-md ul a[data-bs-toggle]::after {
-    opacity: 0;
+    display: none;
   }
 }
 
