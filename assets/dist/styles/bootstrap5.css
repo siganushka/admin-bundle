@@ -86,7 +86,7 @@ body.collapsed > main > .navbar .navbar-toggler .bi::before {
 
 @media (min-width: 768px) {
   body.collapsed > aside {
-    position: absolute;
+    position: absolute !important;
     z-index: 9;
   }
 
