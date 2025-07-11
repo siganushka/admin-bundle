@@ -15,7 +15,7 @@ export default class extends Controller {
       Cookies.remove(this.cookieValue)
     })
 
-    const theme = Cookies.get(this.cookieValue) ?? (media.matches ? 'dark' : 'light')
+    const theme = Cookies.get(this.cookieValue) ?? (media.matches ? 'dark' : 'auto')
     document.documentElement.setAttribute('data-bs-theme', theme)
   }
 

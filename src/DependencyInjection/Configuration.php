@@ -18,10 +18,10 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
             ->scalarNode('theme_cookie')
-                ->defaultValue('theme')
+                ->defaultValue('siganushka_admin_theme')
             ->end()
             ->scalarNode('collapse_cookie')
-                ->defaultValue('collapsed')
+                ->defaultValue('siganushka_admin_collapsed')
             ->end()
         ;
 
