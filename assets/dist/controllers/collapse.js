@@ -14,8 +14,8 @@ export default class extends Controller {
   }
 
   toggle () {
-    const { element, cookieValue } = this
-    element.classList.toggle('collapsed')
+    const { cookieValue } = this
+    document.body.classList.toggle('collapsed')
       ? Cookies.set(cookieValue, 1)
       : Cookies.remove(cookieValue)
   }

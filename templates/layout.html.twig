@@ -11,11 +11,7 @@
       {% block importmap %}{{ importmap('admin') }}{% endblock %}
     {% endblock %}
   </head>
-  <body
-    class="d-flex vh-100{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}"
-    data-controller="siganushka-admin-collapse"
-    data-siganushka-admin-collapse-cookie-value="{{ siganushka_admin_collapse_cookie }}"
-  >
+  <body class="d-flex vh-100{{ app.request.cookies.has(siganushka_admin_collapse_cookie) ? ' collapsed' }}">
     <aside class="d-flex flex-column bg-dark position-relative shadow h-100" data-bs-theme="dark">
       <nav class="navbar navbar-expand-md shadow-sm d-none d-md-block">
         <div class="container-fluid">
@@ -45,7 +41,10 @@
             <span class="d-none">Navbar Toggler</span>
           </button>
 
-          <button class="navbar-toggler d-none d-md-block border-0 px-2" data-action="siganushka-admin-collapse#toggle">
+          <button class="navbar-toggler d-none d-md-block border-0 px-2"
+            data-controller="siganushka-admin-collapse"
+            data-siganushka-admin-collapse-cookie-value="{{ siganushka_admin_collapse_cookie }}"
+            data-action="siganushka-admin-collapse#toggle">
             <i class="bi bi-text-indent-right"></i>
             <span class="d-none">Sidebar Toggler</span>
           </button>

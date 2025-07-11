@@ -21,7 +21,7 @@ class Configuration implements ConfigurationInterface
                 ->defaultValue('siganushka_admin_theme')
             ->end()
             ->scalarNode('collapse_cookie')
-                ->defaultValue('siganushka_admin_collapsed')
+                ->defaultValue('siganushka_admin_collapse')
             ->end()
         ;
 
