@@ -14,7 +14,7 @@ final class MenuPropertyAccessor
 
     public function __construct(?PropertyAccessorInterface $propertyAccessor = null)
     {
-        $this->propertyAccessor = $propertyAccessor ?: PropertyAccess::createPropertyAccessor();
+        $this->propertyAccessor = $propertyAccessor ?? PropertyAccess::createPropertyAccessor();
     }
 
     public function setValue(ItemInterface $menu, string $attributeToSet, string $class): void
