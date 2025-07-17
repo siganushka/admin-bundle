@@ -10,7 +10,6 @@ use Siganushka\GenericBundle\DependencyInjection\SiganushkaGenericExtension;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
@@ -34,7 +33,7 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
         $builder->addTag('knp_menu.menu_builder', ['method' => 'sidebar', 'alias' => 'sidebar']);
 
         $navbarUserListener = $container->findDefinition(NavbarUserListener::class);
-        $navbarUserListener->setArgument('$generator', new Reference('security.logout_url_generator', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        $navbarUserListener->setArgument('$generator', new Reference('security.logout_url_generator'));
 
         if (!$container::willBeAvailable('symfony/security-bundle', Security::class, ['siganushka/admin-bundle'])) {
             $container->removeDefinition(NavbarUserListener::class);
