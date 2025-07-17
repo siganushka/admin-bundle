@@ -36,6 +36,10 @@ aside .offcanvas-md {
   transition: width .15s ease-in-out;
 }
 
+aside .offcanvas-md {
+  outline: none;
+}
+
 aside .offcanvas-md ul {
   margin: 0;
   padding: 0;
