@@ -32,7 +32,7 @@ final class NavbarUserListener
 
         try {
             $logoutUrl = $this->generator->getLogoutPath();
-        } catch (\Exception) {
+        } catch (\Throwable) {
             return;
         }
 
