@@ -79,7 +79,7 @@ aside .offcanvas-md ul .current > a:not([data-bs-toggle]) {
 }
 
 /** Sidebar width */
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   aside .navbar,
   aside .offcanvas-md {
     width: 240px !important;
