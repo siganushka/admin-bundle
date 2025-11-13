@@ -32,7 +32,7 @@ aside .navbar .navbar-brand {
 /** Sidebar */
 aside .navbar,
 aside .offcanvas-md {
-  width: 240px !important;
+  width: 200px !important;
   transition: width .15s ease-in-out;
 }
 
@@ -76,6 +76,14 @@ aside .offcanvas-md ul a:hover,
 aside .offcanvas-md ul a:focus,
 aside .offcanvas-md ul .current > a:not([data-bs-toggle]) {
   background-color: var(--bs-secondary-bg);
+}
+
+/** Sidebar width */
+@media (min-width: 1200px) {
+  aside .navbar,
+  aside .offcanvas-md {
+    width: 240px !important;
+  }
 }
 
 /** Collapsed button */
