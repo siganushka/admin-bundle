@@ -19,6 +19,7 @@ final class MenuPropertyAccessor
 
     public function setValue(ItemInterface $menu, string $attributeToSet, string $class): void
     {
+        /** @var string */
         $current = $this->propertyAccessor->getValue($menu, $attributeToSet);
 
         $this->propertyAccessor->setValue($menu, $attributeToSet, trim($class.' '.$current));
