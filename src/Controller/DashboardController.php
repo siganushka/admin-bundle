@@ -78,9 +78,9 @@ class DashboardController extends AbstractController
     private function determineSymfonyState(): string
     {
         $now = new \DateTimeImmutable();
-        /** @phpstan-ignore-next-line */
+        /* @phpstan-ignore method.nonObject */
         $eom = \DateTimeImmutable::createFromFormat('d/m/Y', '01/'.Kernel::END_OF_MAINTENANCE)->modify('last day of this month');
-        /** @phpstan-ignore-next-line */
+        /* @phpstan-ignore method.nonObject */
         $eol = \DateTimeImmutable::createFromFormat('d/m/Y', '01/'.Kernel::END_OF_LIFE)->modify('last day of this month');
 
         return match (true) {
