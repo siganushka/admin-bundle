@@ -12,9 +12,7 @@ use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 #[AsEventListener(priority: -16)]
 final class NavbarUserListener
 {
-    public function __construct(
-        private readonly Security $security,
-        private readonly LogoutUrlGenerator $generator)
+    public function __construct(private readonly Security $security, private readonly LogoutUrlGenerator $generator)
     {
     }
 

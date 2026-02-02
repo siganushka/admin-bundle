@@ -11,9 +11,7 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 #[AsEventListener(priority: -8)]
 final class NavbarThemeListener
 {
-    public function __construct(
-        #[Autowire('%siganushka_admin.theme_cookie%')]
-        private readonly string $themeCookie)
+    public function __construct(#[Autowire('%siganushka_admin.theme_cookie%')] private readonly string $themeCookie)
     {
     }
 

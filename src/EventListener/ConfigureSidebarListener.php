@@ -17,8 +17,8 @@ final class ConfigureSidebarListener
 {
     public function __construct(
         private readonly MatcherInterface $matcher,
-        private readonly MenuPropertyAccessor $accessor)
-    {
+        private readonly MenuPropertyAccessor $accessor,
+    ) {
     }
 
     public function __invoke(SidebarMenuEvent $event): void
