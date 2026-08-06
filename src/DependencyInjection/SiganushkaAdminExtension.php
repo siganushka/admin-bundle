@@ -6,8 +6,7 @@ namespace Siganushka\AdminBundle\DependencyInjection;
 
 use Siganushka\AdminBundle\EventListener\NavbarUserListener;
 use Siganushka\AdminBundle\Menu\Builder;
-use Siganushka\GenericBundle\DependencyInjection\SiganushkaGenericExtension;
-use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\AssetMapper\AssetMapperInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -33,11 +32,7 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
         $builder->addTag('knp_menu.menu_builder', ['method' => 'sidebar', 'alias' => 'sidebar']);
 
         $navbarUserListener = $container->findDefinition(NavbarUserListener::class);
-        $navbarUserListener->setArgument('$generator', new Reference('security.logout_url_generator'));
-
-        if (!$container::willBeAvailable('symfony/security-bundle', Security::class, ['siganushka/admin-bundle'])) {
-            $container->removeDefinition(NavbarUserListener::class);
-        }
+        $navbarUserListener->setArgument('$urlGenerator', new Reference('security.logout_url_generator'));
     }
 
     public function prepend(ContainerBuilder $container): void
@@ -48,12 +43,26 @@ class SiganushkaAdminExtension extends Extension implements PrependExtensionInte
             ],
         ]);
 
-        if (SiganushkaGenericExtension::isAssetMapperAvailable($container)) {
+        if ($this->isAssetMapperAvailable($container)) {
             $container->prependExtensionConfig('framework', [
                 'asset_mapper' => [
                     'paths' => [__DIR__.'/../../assets/dist' => '@siganushka/admin-bundle'],
                 ],
             ]);
         }
+    }
+
+    private function isAssetMapperAvailable(ContainerBuilder $container): bool
+    {
+        if (!interface_exists(AssetMapperInterface::class)) {
+            return false;
+        }
+
+        $bundlesMetadata = $container->getParameter('kernel.bundles_metadata');
+        if (!isset($bundlesMetadata['FrameworkBundle'])) {
+            return false;
+        }
+
+        return is_file($bundlesMetadata['FrameworkBundle']['path'].'/Resources/config/asset_mapper.php');
     }
 }

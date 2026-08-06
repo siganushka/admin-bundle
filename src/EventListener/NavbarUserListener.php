@@ -5,20 +5,22 @@ declare(strict_types=1);
 namespace Siganushka\AdminBundle\EventListener;
 
 use Siganushka\AdminBundle\Event\NavbarMenuEvent;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 
 #[AsEventListener(priority: -16)]
 final class NavbarUserListener
 {
-    public function __construct(private readonly Security $security, private readonly LogoutUrlGenerator $generator)
+    public function __construct(
+        private readonly TokenStorageInterface $tokenStorage,
+        private readonly LogoutUrlGenerator $urlGenerator)
     {
     }
 
     public function __invoke(NavbarMenuEvent $event): void
     {
-        $user = $this->security->getUser();
+        $user = $this->tokenStorage->getToken()?->getUser();
         if (!$user) {
             return;
         }
@@ -29,7 +31,7 @@ final class NavbarUserListener
         ;
 
         try {
-            $logoutUrl = $this->generator->getLogoutPath();
+            $logoutUrl = $this->urlGenerator->getLogoutPath();
         } catch (\Throwable) {
             return;
         }
